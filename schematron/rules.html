@@ -1,0 +1,213 @@
+<html xmlns:sm="http://purl.oclc.org/dsdl/schematron" xmlns:mscw="moscow" xmlns:dans="http://dans.knaw.nl" xmlns:fn="http://www.w3.org/2005/xpath-functions">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <title>An initial Schematron Schema for any EAD to validate for EHRI-preprocess(0.1)</title>
+   </head>
+   <body>
+      <p>created on 2014-10-17+02:00</p>
+      <h1>An initial Schematron Schema for any EAD to validate for EHRI-preprocess</h1>
+      <h2>Version: 0.1</h2>
+      <p>this is before any EHRI preprocess. after validating according to the ead.xsd, this
+         establishes some rules, according to Deliverable 17.3, for ead's provided to EHRI.
+         It may be used as a starting point for data providers.
+         
+      </p>
+      <p>Version History:</p>
+      <p>0.1 (2014-10-07) : Initial rules</p>
+      <p>0.2 (2014-10-17)     DEFINITIONS MSCW:ADVICE
+         MUST-WP19: mandatory for import process according to WP19
+         MUST-EAD: mandatory according to the EAD specification of LoC
+         SHOULD-WP17: mandatory for description process according to WP17
+         SHOULD-WP19: desirable for description process according to WP19
+         COULD: desirable for description process to WP17
+         
+      </p>
+      <ol>
+         <li><a href="#EADheader">EAD header</a></li>
+         <li><a href="#dids">did's</a></li>
+         <li><a href="#unitdates">unitdate's</a></li>
+         <li><a href="#levelattribute">level attribute</a></li>
+         <li><a href="#typeattribute">type attribute</a></li>
+         <li><a href="#archdescsandclevels">archdesc's and c-levels</a></li>
+      </ol><a id="EADheader"></a><h2>EAD header</h2>
+      <p style="font-style: italic;">the EAD header contains useful information, like language of description, eadid etc.<br></p>
+      <ol>
+         <li>MUST-WP19: 
+            eadid MUST contain text
+         </li>
+         <li>SHOULD-WP17: 
+            eadid SHOULD contain a mainagencycode attribute
+         </li>
+         <li>MUST-WP19: 
+            eadheader MUST contain a profiledesc
+         </li>
+         <li>MUST-WP19: 
+            eadheader MUST specify a langusage
+         </li>
+         <li>SHOULD-WP17: 
+            eadheader SHOULD specify a creation
+         </li>
+         <li>COULD: 
+            eadheader COULD have a non-empty creation-date
+         </li>
+         <li>SHOULD-WP17: 
+            eadheader SHOULD specify a publisher
+         </li>
+         <li>SHOULD-WP17: 
+            a revisiondesc SHOULD have a non-empty date
+         </li>
+      </ol><a id="dids"></a><h2>did's</h2>
+      <ol>
+         <li>SHOULD-WP17: 
+            a did SHOULD have a unitdate, according 17.3
+         </li>
+         <li>COULD: 
+            unitdates COULD have a label, describing the type of date, according 17.3
+         </li>
+         <li>SHOULD-WP17: 
+            a did SHOULD have a non-empty physdesc-extent, according to 17.3
+         </li>
+         <li>MUST-WP19: 
+            a did MUST have a unitid, according 17.3 and WP19
+         </li>
+         <li>SHOULD-WP17: 
+            a did SHOULD have a unittitle, according 17.3
+         </li>
+         <li>MUST-WP19: 
+            a did MUST have at least one non-empty unittitle
+         </li>
+         <li>MUST-WP19: 
+            unitid's MUST be unique within one eadfile, according 17.3
+         </li>
+         <li>SHOULD-WP17: 
+            a unitid SHOULD not be empty
+         </li>
+      </ol><a id="unitdates"></a><h2>unitdate's</h2>
+      <p style="font-style: italic;">the xsd imposes a regexp on the 'normal' attribute. the unitdate itself however is
+         free-text.<br></p>
+      <ol>
+         <li>SHOULD-WP17: 
+            unitdate SHOULD be non-empty or have a non-empty @normal attribute
+         </li>
+         <li>SHOULD-WP19: 
+            unitdate SHOULD have a non-empty @normal attribute
+         </li>
+      </ol><a id="levelattribute"></a><h2>level attribute</h2>
+      <ol>
+         <li>MUST-EAD: 
+            archdesc/c-level with @level 'otherlevel' MUST have an @otherlevel attribute describing
+            the level
+         </li>
+         <li>SHOULD-WP19: 
+            ONLY the archdesc can be fonds level
+         </li>
+         <li>SHOULD-WP19: 
+            recordgrp SHOULD be a child of another recordgrp
+         </li>
+         <li>SHOULD-WP19: 
+            subgrp SHOULD be a child of another subgrp or a recordgrp
+         </li>
+         <li>SHOULD-WP19: 
+            subseries SHOULD be a child of another subseries or a series
+         </li>
+      </ol><a id="typeattribute"></a><h2>type attribute</h2>
+      <p style="font-style: italic;">TYPE – required? (according to the LoC DTD information, this is not required, however
+         they state in their text that it is required.)<br></p>
+      <ol>
+         <li>MUST-EAD: 
+            dsc MUST have a @type attribute
+         </li>
+      </ol><a id=""></a><h2></h2>
+      <ol>
+         <li>MUST-EAD: 
+            dsc with @type 'othertype' MUST have an @othertype attribute describing the type
+         </li>
+      </ol><a id="archdescsandclevels"></a><h2>archdesc's and c-levels</h2>
+      <ol>
+         <li>MUST-WP19: 
+            archdesc MUST have a level-attribute
+         </li>
+         <li>COULD: 
+            archdesc COULD have a non-empty origination
+         </li>
+         <li>SHOULD-WP17: 
+            archdesc-processinfo SHOULD have a date
+         </li>
+         <li>SHOULD-WP17: 
+            archdesc-level SHOULD be 'fonds', 'recordgrp', 'collection' or 'otherlevel'
+         </li>
+         <li>COULD: 
+            archdesc COULD have a langmaterial
+         </li>
+         <li>COULD: 
+            archdesc COULD have a custodhist
+         </li>
+         <li>COULD: 
+            archdesc COULD have an otherfindaid
+         </li>
+         <li>COULD: 
+            archdesc COULD have an originalsloc
+         </li>
+         <li>COULD: 
+            archdesc COULD have an altformavail
+         </li>
+         <li>COULD: 
+            archdesc COULD have a bibliography
+         </li>
+         <li>COULD: 
+            archdesc COULD have an odd
+         </li>
+         <li>COULD: 
+            archdesc COULD have a note
+         </li>
+         <li>COULD: 
+            archdesc COULD have a scopecontent
+         </li>
+         <li>COULD: 
+            archdesc COULD have a controlaccess
+         </li>
+         <li>COULD: 
+            controlaccess COULD have a subject
+         </li>
+         <li>COULD: 
+            controlaccess COULD have a place
+         </li>
+         <li>COULD: 
+            controlaccess COULD have a persname
+         </li>
+         <li>COULD: 
+            controlaccess COULD have an orgname
+         </li>
+         <li>SHOULD-WP17: 
+            archdesc SHOULD have a non-empty processinfo
+         </li>
+         <li>SHOULD-WP17: 
+            archdesc SHOULD have a non-empty processinfo-date
+         </li>
+         <li>MUST-WP19: 
+            language MUST contain a langcode attribute
+         </li>
+         <li>SHOULD-WP17: 
+            language SHOULD contain a scriptcode attribute
+         </li>
+         <li>MUST-WP19: 
+            c01 MUST have a level-attribute
+         </li>
+         <li>MUST-WP19: 
+            c02 MUST have a level-attribute
+         </li>
+         <li>MUST-WP19: 
+            c03 MUST have a level-attribute
+         </li>
+         <li>MUST-WP19: 
+            c04 MUST have a level-attribute
+         </li>
+         <li>MUST-WP19: 
+            c05 MUST have a level-attribute
+         </li>
+         <li>MUST-WP19: 
+            c06 MUST have a level-attribute
+         </li>
+      </ol>
+   </body>
+</html>

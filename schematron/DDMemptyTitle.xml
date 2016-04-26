@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ddm:DDM
+    xmlns:dc="http://purl.org/dc/elements/1.1/"
+    xmlns:dcmitype="http://purl.org/dc/dcmitype/"
+    xmlns:narcis="http://easy.dans.knaw.nl/schemas/vocab/narcis-type/"
+    xmlns:dcx="http://easy.dans.knaw.nl/schemas/dcx/"
+    xmlns:dcx-dai="http://easy.dans.knaw.nl/schemas/dcx/dai/"
+    xmlns:ddm="http://easy.dans.knaw.nl/schemas/md/ddm/"
+    xmlns:dcterms="http://purl.org/dc/terms/"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:id-type="http://easy.dans.knaw.nl/schemas/vocab/identifier-type/"
+    xsi:schemaLocation="http://easy.dans.knaw.nl/schemas/md/ddm/ https://easy.dans.knaw.nl/schemas/md/2016/ddm.xsd"
+>
+    <ddm:profile>
+        <dc:title></dc:title>
+        <dcterms:description>The Dataset abstract</dcterms:description>
+        <dcx-dai:creatorDetails>
+            <dcx-dai:author>
+                <dcx-dai:titles></dcx-dai:titles>
+                <dcx-dai:initials>I</dcx-dai:initials>
+                <dcx-dai:insertions></dcx-dai:insertions>
+                <dcx-dai:surname>Lastname</dcx-dai:surname>
+                <dcx-dai:organization>
+                    <dcx-dai:name xml:lang="en">DANS</dcx-dai:name>
+                </dcx-dai:organization>
+            </dcx-dai:author>
+        </dcx-dai:creatorDetails>        
+        <ddm:created>2015-09-09</ddm:created>
+        <ddm:audience>D41500</ddm:audience>
+        <ddm:accessRights>OPEN_ACCESS</ddm:accessRights>
+    </ddm:profile>
+    <ddm:dcmiMetadata>
+        <!-- minimal ddm -->
+    </ddm:dcmiMetadata>
+</ddm:DDM>

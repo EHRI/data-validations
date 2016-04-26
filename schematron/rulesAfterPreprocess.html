@@ -1,0 +1,82 @@
+<html xmlns:sm="http://purl.oclc.org/dsdl/schematron" xmlns:mscw="moscow" xmlns:dans="http://dans.knaw.nl" xmlns:fn="http://www.w3.org/2005/xpath-functions">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <title>after preprocess: A Schematron Schema for any EAD to validate for EHRI(0.1)</title>
+   </head>
+   <body>
+      <p>created on 2014-10-10+02:00</p>
+      <h1>after preprocess: A Schematron Schema for any EAD to validate for EHRI</h1>
+      <h2>Version: 0.1</h2>
+      <p>schematron to validate EAD files after preprocess, so they will be imported without
+         any impediments.
+      </p>
+      <p>Version History:</p>
+      <p>0.1 (2014-10-07) : Initial rules</p>
+      <ol>
+         <li><a href="#EADheader">EAD header</a></li>
+         <li><a href="#dids">did's</a></li>
+         <li><a href="#archdescsandclevels">archdesc's and c-levels</a></li>
+      </ol><a id="EADheader"></a><h2>EAD header</h2>
+      <p style="font-style: italic;">the EAD header contains useful information, like language of description, eadid etc.<br></p>
+      <ol>
+         <li>MUST: 
+            eadid MUST contain text
+         </li>
+         <li>SHOULD: 
+            eadheader SHOULD specify a langusage
+         </li>
+         <li>MUST: 
+            language MUST contain a langcode attribute
+         </li>
+      </ol><a id="dids"></a><h2>did's</h2>
+      <ol>
+         <li>SHOULD: 
+            a did SHOULD have a unitdate
+         </li>
+         <li>SHOULD: 
+            a did SHOULD have a non-empty physdesc-extent
+         </li>
+         <li>MUST: 
+            a did MUST have a unitid
+         </li>
+         <li>SHOULD: 
+            a did SHOULD have a unittitle
+         </li>
+         <li>MUST: 
+            unitid's MUST be unique within one eadfile
+         </li>
+         <li>MUST: 
+            a unitid MUST not be empty
+         </li>
+         <li>SHOULD: 
+            a unittitle SHOULD not be empty
+         </li>
+      </ol><a id="archdescsandclevels"></a><h2>archdesc's and c-levels</h2>
+      <ol>
+         <li>MUST: 
+            archdesc MUST have a level-attribute
+         </li>
+         <li>SHOULD: 
+            archdesc SHOULD have a non-empty origination
+         </li>
+         <li>MUST: 
+            c01 MUST have a level-attribute
+         </li>
+         <li>MUST: 
+            c02 MUST have a level-attribute
+         </li>
+         <li>MUST: 
+            c03 MUST have a level-attribute
+         </li>
+         <li>MUST: 
+            c04 MUST have a level-attribute
+         </li>
+         <li>MUST: 
+            c05 MUST have a level-attribute
+         </li>
+         <li>MUST: 
+            c06 MUST have a level-attribute
+         </li>
+      </ol>
+   </body>
+</html>
