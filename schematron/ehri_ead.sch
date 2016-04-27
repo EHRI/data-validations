@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<sch:schema xmlns:sch="http://purl.oclc.org/dsdl/schematron" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" schemaVersion="0.1" queryBinding="xslt2">
+<sch:schema xmlns:sch="http://purl.oclc.org/dsdl/schematron" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" schemaVersion="0.3" queryBinding="xslt2">
   <sch:ns prefix="ead" uri="urn:isbn:1-931666-22-9"/>
   <sch:title>An initial Schematron Schema for any EAD to validate for EHRI-preprocess</sch:title>
   <sch:p>this is before any EHRI preprocess. after validating according to the ead.xsd, this establishes some rules, according to Deliverable 17.3, for ead's provided to EHRI.
@@ -14,6 +14,8 @@
         <sch:emph>SHOULD-WP19</sch:emph>: desirable for description process according to WP19
         <sch:emph>COULD</sch:emph>: desirable for description process according to WP17
     </sch:p>
+  <sch:p>0.3 (2016-04-27): date validation</sch:p>
+
   <!-- TODO: langencoding="iso639-2b" dateencoding="iso8601" -->
   <!-- Question: do anything with level attribute? 
 
@@ -70,6 +72,21 @@
     <sch:rule context="ead:unitdate">
       <sch:assert role="SHOULD-WP17" test="normalize-space(.) or normalize-space(@normal)">unitdate SHOULD be non-empty or have a non-empty @normal attribute</sch:assert>
       <sch:assert role="SHOULD-WP19" test="normalize-space(@normal)">unitdate SHOULD have a non-empty @normal attribute</sch:assert>
+    </sch:rule>
+  </sch:pattern>
+  <sch:pattern>
+    <sch:title>Date validation</sch:title>
+    <sch:rule context="ead:unitdate">
+      <!-- check existence of start date -->
+      <sch:let name="start-date" value="replace(@normal, '/.*', '')"/>
+      <sch:let name="start-date" value="replace($start-date, '-', '')"/>
+      <sch:let name="start-date" value="string-join((substring($start-date, 1, 4), substring($start-date, 5, 2), substring($start-date, 7, 2)), '-')"/>
+      <sch:assert role="MUST-EAD" test="$start-date castable as xs:date">date MUST exist</sch:assert>
+      <!-- check existence of end date -->
+      <sch:let name="end-date" value="replace(@normal, '.*/', '')"/>
+      <sch:let name="end-date" value="replace($end-date, '-', '')"/>
+      <sch:let name="end-date" value="string-join((substring($end-date, 1, 4), substring($end-date, 5, 2), substring($end-date, 7, 2)), '-')"/>
+      <sch:assert role="MUST-EAD" test="$end-date castable as xs:date">date MUST exist</sch:assert>
     </sch:rule>
   </sch:pattern>
   <sch:pattern>
@@ -153,23 +170,6 @@
     </sch:rule>
     <sch:rule context="ead:c06">
       <sch:assert role="MUST-WP19" test="@level">c06 MUST have a level-attribute</sch:assert>
-    </sch:rule>
-  </sch:pattern>
-  <sch:pattern>
-    <sch:title>Date validation</sch:title>
-    <sch:rule context="ead:unitdate">
-      <!-- check date format -->
-      <sch:assert role="MUST-EAD" test="matches(@normal, '^(\d{4}-?\d{2}-?\d{2}/?){1,2}$')">date format MUST be valid</sch:assert>
-      <!-- check existence of start date -->
-      <sch:let name="start-date" value="replace(@normal, '/.*', '')"/>
-      <sch:let name="start-date" value="replace($start-date, '-', '')"/>
-      <sch:let name="start-date" value="string-join((substring($start-date, 1, 4), substring($start-date, 5, 2), substring($start-date, 7, 2)), '-')"/>
-      <sch:assert role="MUST-EAD" test="$start-date castable as xs:date">start date MUST exist</sch:assert>
-      <!-- check existence of end date -->
-      <sch:let name="end-date" value="replace(@normal, '.*/', '')"/>
-      <sch:let name="end-date" value="replace($end-date, '-', '')"/>
-      <sch:let name="end-date" value="string-join((substring($end-date, 1, 4), substring($end-date, 5, 2), substring($end-date, 7, 2)), '-')"/>
-      <sch:assert role="MUST-EAD" test="$end-date castable as xs:date">end date MUST exist</sch:assert>
     </sch:rule>
   </sch:pattern>
 </sch:schema>
