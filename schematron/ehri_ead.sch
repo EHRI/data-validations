@@ -81,12 +81,12 @@
       <sch:let name="start-date" value="replace(@normal, '/.*', '')"/>
       <sch:let name="start-date" value="replace($start-date, '-', '')"/>
       <sch:let name="start-date" value="string-join((substring($start-date, 1, 4), substring($start-date, 5, 2), substring($start-date, 7, 2)), '-')"/>
-      <sch:assert role="MUST-EAD" test="$start-date castable as xs:date">date MUST exist</sch:assert>
+      <sch:assert role="MUST-EAD" test="$start-date castable as xs:date">unitdate/@normal should include a valid date</sch:assert>
       <!-- check existence of end date -->
       <sch:let name="end-date" value="replace(@normal, '.*/', '')"/>
       <sch:let name="end-date" value="replace($end-date, '-', '')"/>
       <sch:let name="end-date" value="string-join((substring($end-date, 1, 4), substring($end-date, 5, 2), substring($end-date, 7, 2)), '-')"/>
-      <sch:assert role="MUST-EAD" test="$end-date castable as xs:date">date MUST exist</sch:assert>
+      <sch:assert role="MUST-EAD" test="$end-date castable as xs:date">unitdate/@normal should include a valid date</sch:assert>
     </sch:rule>
   </sch:pattern>
   <sch:pattern>
