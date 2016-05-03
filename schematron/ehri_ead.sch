@@ -16,6 +16,17 @@
     </sch:p>
   <sch:p>0.3 (2016-04-27): date validation</sch:p>
 
+  <xsl:function name="ead:unitdate-normal-exists" as="xs:boolean">
+    <xsl:param name="unitdate-normal" as="xs:string"/>
+      <xsl:variable name="start-date" select="replace($unitdate-normal, '/.*', '')"/>
+      <xsl:variable name="start-date" select="replace($start-date, '-', '')"/>
+      <xsl:variable name="start-date" select="string-join((substring($start-date, 1, 4), substring($start-date, 5, 2), substring($start-date, 7, 2)), '-')"/>
+      <xsl:variable name="end-date" select="replace($unitdate-normal, '.*/', '')"/>
+      <xsl:variable name="end-date" select="replace($end-date, '-', '')"/>
+      <xsl:variable name="end-date" select="string-join((substring($end-date, 1, 4), substring($end-date, 5, 2), substring($end-date, 7, 2)), '-')"/>
+      <xsl:sequence select="$start-date castable as xs:date and $end-date castable as xs:date"/>
+  </xsl:function>
+
   <!-- TODO: langencoding="iso639-2b" dateencoding="iso8601" -->
   <!-- Question: do anything with level attribute? 
 
@@ -77,16 +88,7 @@
   <sch:pattern>
     <sch:title>Date validation</sch:title>
     <sch:rule context="ead:unitdate">
-      <!-- check existence of start date -->
-      <sch:let name="start-date" value="replace(@normal, '/.*', '')"/>
-      <sch:let name="start-date" value="replace($start-date, '-', '')"/>
-      <sch:let name="start-date" value="string-join((substring($start-date, 1, 4), substring($start-date, 5, 2), substring($start-date, 7, 2)), '-')"/>
-      <sch:assert role="MUST-EAD" test="$start-date castable as xs:date">unitdate/@normal should include a valid date</sch:assert>
-      <!-- check existence of end date -->
-      <sch:let name="end-date" value="replace(@normal, '.*/', '')"/>
-      <sch:let name="end-date" value="replace($end-date, '-', '')"/>
-      <sch:let name="end-date" value="string-join((substring($end-date, 1, 4), substring($end-date, 5, 2), substring($end-date, 7, 2)), '-')"/>
-      <sch:assert role="MUST-EAD" test="$end-date castable as xs:date">unitdate/@normal should include a valid date</sch:assert>
+      <sch:assert role="MUST-EAD" test="ead:unitdate-normal-exists(@normal)">unitdate/@normal should include a valid date</sch:assert>
     </sch:rule>
   </sch:pattern>
   <sch:pattern>
