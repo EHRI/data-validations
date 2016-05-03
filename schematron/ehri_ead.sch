@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<sch:schema xmlns:sch="http://purl.oclc.org/dsdl/schematron" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" schemaVersion="0.3" queryBinding="xslt2">
+<sch:schema xmlns:sch="http://purl.oclc.org/dsdl/schematron" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" schemaVersion="0.4" queryBinding="xslt2">
   <sch:ns prefix="ead" uri="urn:isbn:1-931666-22-9"/>
   <sch:title>An initial Schematron Schema for any EAD to validate for EHRI-preprocess</sch:title>
   <sch:p>this is before any EHRI preprocess. after validating according to the ead.xsd, this establishes some rules, according to Deliverable 17.3, for ead's provided to EHRI.
@@ -15,22 +15,20 @@
         <sch:emph>COULD</sch:emph>: desirable for description process according to WP17
     </sch:p>
   <sch:p>0.3 (2016-04-27): date validation</sch:p>
+  <sch:p>0.4 (2016-05-03): separated date validation in a function</sch:p>
 
   <!-- add dashes to a //unitdate/@normal date where missing -->
   <!-- format must be YYYY-MM-DD with any of the dashes being optional -->
   <xsl:function name="ead:dashify-unitdate-normal" as="xs:string">
     <xsl:param name="unitdate-normal" as="xs:string"/>
-
       <!-- first remove any dashes -->
       <xsl:variable name="unitdate-normal" select="replace($unitdate-normal, '-', '')"/>
-
       <!-- then join the date parts with dashes -->
       <xsl:variable name="unitdate-normal" select="string-join((
                                                      substring($unitdate-normal, 1, 4),
                                                      substring($unitdate-normal, 5, 2),
                                                      substring($unitdate-normal, 7, 2)
                                                      ), '-')"/>
-
       <!-- finally return the result -->
       <xsl:sequence select="$unitdate-normal"/>
   </xsl:function>
