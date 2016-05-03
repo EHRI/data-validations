@@ -21,25 +21,33 @@
   <!-- format must be YYYY-MM-DD with any of the dashes being optional -->
   <xsl:function name="ead:dashify-unitdate-normal" as="xs:string">
     <xsl:param name="unitdate-normal" as="xs:string"/>
-      <!-- first remove any dashes -->
-      <xsl:variable name="unitdate-normal" select="replace($unitdate-normal, '-', '')"/>
-      <!-- then join the date parts with dashes -->
-      <xsl:variable name="unitdate-normal" select="string-join((
-                                                     substring($unitdate-normal, 1, 4),
-                                                     substring($unitdate-normal, 5, 2),
-                                                     substring($unitdate-normal, 7, 2)
-                                                     ), '-')"/>
-      <!-- finally return the result -->
-      <xsl:sequence select="$unitdate-normal"/>
+    <!-- first remove any dashes -->
+    <xsl:variable name="unitdate-normal" select="replace($unitdate-normal, '-', '')"/>
+    <!-- then join the date parts with dashes -->
+    <xsl:variable name="unitdate-normal" select="string-join((
+                                                   substring($unitdate-normal, 1, 4),
+                                                   substring($unitdate-normal, 5, 2),
+                                                   substring($unitdate-normal, 7, 2)
+                                                   ), '-')"/>
+    <!-- finally return the result -->
+    <xsl:sequence select="$unitdate-normal"/>
   </xsl:function>
 
   <!-- check if //unitdate/@normal date(s) actually exist -->
   <!-- e.g. 2000-02-29 exists but 2001-02-29 does not -->
   <xsl:function name="ead:unitdate-normal-exists" as="xs:boolean">
     <xsl:param name="unitdate-normal" as="xs:string"/>
-      <xsl:variable name="start-date" select="ead:dashify-unitdate-normal(replace($unitdate-normal, '/.*', ''))"/>
-      <xsl:variable name="end-date" select="ead:dashify-unitdate-normal(replace($unitdate-normal, '.*/', ''))"/>
-      <xsl:sequence select="$start-date castable as xs:date and $end-date castable as xs:date"/>
+    <xsl:choose>
+      <xsl:when test="contains($unitdate-normal, '/')">
+        <xsl:variable name="start-date" select="ead:dashify-unitdate-normal(replace($unitdate-normal, '/.*', ''))"/>
+        <xsl:variable name="end-date" select="ead:dashify-unitdate-normal(replace($unitdate-normal, '.*/', ''))"/>
+        <xsl:sequence select="$start-date castable as xs:date and $end-date castable as xs:date"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:variable name="date" select="ead:dashify-unitdate-normal($unitdate-normal)"/>
+        <xsl:sequence select="$date castable as xs:date"/>
+      </xsl:otherwise>
+    </xsl:choose>
   </xsl:function>
 
   <!-- TODO: langencoding="iso639-2b" dateencoding="iso8601" -->
