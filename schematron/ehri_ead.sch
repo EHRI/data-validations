@@ -20,7 +20,7 @@
   <!-- add dashes to a //unitdate/@normal date where missing -->
   <!-- format must be YYYY-MM-DD with any of the dashes being optional -->
   <xsl:function name="ead:dashify-unitdate-normal" as="xs:string">
-    <xsl:param name="unitdate-normal" as="xs:string"/>
+    <xsl:param name="unitdate-normal" as="xs:string?"/>
     <!-- first remove any dashes -->
     <xsl:variable name="unitdate-normal" select="replace($unitdate-normal, '-', '')"/>
     <!-- then join the date parts with dashes -->
@@ -36,7 +36,7 @@
   <!-- check if //unitdate/@normal date(s) actually exist -->
   <!-- e.g. 2000-02-29 exists but 2001-02-29 does not -->
   <xsl:function name="ead:unitdate-normal-exists" as="xs:boolean">
-    <xsl:param name="unitdate-normal" as="xs:string"/>
+    <xsl:param name="unitdate-normal" as="xs:string?"/>
     <xsl:choose>
       <xsl:when test="contains($unitdate-normal, '/')">
         <xsl:variable name="start-date" select="ead:dashify-unitdate-normal(replace($unitdate-normal, '/.*', ''))"/>
