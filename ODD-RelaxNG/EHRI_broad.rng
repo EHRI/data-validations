@@ -5,7 +5,7 @@
          xmlns:teix="http://www.tei-c.org/ns/Examples"
          datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes"
          ns="urn:isbn:1-931666-22-9"><!--
-Schema generated from ODD source 2016-07-28T09:20:55Z. .
+Schema generated from ODD source 2016-09-13T08:42:59Z. .
 TEI Edition: rev4
 TEI Edition Location: http://www.tei-c.org/Vault/P5//
   
@@ -856,7 +856,7 @@ TEI Edition Location: http://www.tei-c.org/Vault/P5//
    </define>
    <define name="model.did">
       <choice>
-         <ref name="abstract"/>
+         <ref name="EADabstract"/>
          <ref name="container"/>
          <ref name="dao"/>
          <ref name="daogrp"/>
@@ -1245,7 +1245,7 @@ TEI Edition Location: http://www.tei-c.org/Vault/P5//
          <empty/>
       </element>
    </define>
-   <define name="abstract">
+   <define name="EADabstract">
       <element name="abstract">
          <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(Abstract) A very brief summary of the materials being described, used primarily to encode bits of biographical or historical information about the creator and abridged statements about the scope, content, arrangement, or other descriptive details about the archival unit or one of its components.</a:documentation>
          <zeroOrMore>
@@ -3548,7 +3548,7 @@ TEI Edition Location: http://www.tei-c.org/Vault/P5//
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
                   id="EHRI_broad-physdesc-nonemptyPhysdescDesirable-constraint-63">
             <rule xmlns:rng="http://relaxng.org/ns/structure/1.0" context="ead:physdesc">
-               <assert role="SHOULDWP17" test="normalize-space(ead:extent)">a did SHOULD have a non-empty
+               <assert role="SHOULDWP17" test="normalize-space(ead:extent[1])">a did SHOULD have a non-empty
                     physdesc-extent, according to 17.3</assert>
             </rule>
          </pattern>

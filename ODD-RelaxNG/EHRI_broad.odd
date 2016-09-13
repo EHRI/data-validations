@@ -438,7 +438,7 @@
               <constraint>
                 <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="ead:physdesc"><assert
                     xmlns="http://purl.oclc.org/dsdl/schematron" role="SHOULDWP17"
-                    test="normalize-space(ead:extent)">a did SHOULD have a non-empty
+                    test="normalize-space(ead:extent[1])">a did SHOULD have a non-empty
                     physdesc-extent, according to 17.3</assert></rule>
               </constraint>
             </constraintSpec>
