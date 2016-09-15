@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?xml-model href="../schemas/tei_odds.rnc" type="application/relax-ng-compact-syntax"?>
+<?xml-model href="tei_odds.rnc" type="application/relax-ng-compact-syntax"?>
 <TEI xmlns="http://www.tei-c.org/ns/1.0" xmlns:rng="http://relaxng.org/ns/structure/1.0"
   xml:lang="en">
   <teiHeader>
@@ -39,6 +39,12 @@
               <constraint>
                 <ns xmlns="http://purl.oclc.org/dsdl/schematron" prefix="ead"
                   uri="urn:isbn:1-931666-22-9"/>
+              </constraint>
+            </constraintSpec>
+            <constraintSpec ident="EHRINamespace-TEI" scheme="isoschematron" mode="add">
+              <constraint>
+                <ns xmlns="http://purl.oclc.org/dsdl/schematron" prefix="tei"
+                  uri="http://www.tei-c.org/ns/1.0"/>
               </constraint>
             </constraintSpec>
             <constraintSpec ident="levelRequired" scheme="isoschematron" type="EHRI">
@@ -574,6 +580,15 @@
                     >unitid's MUST be unique within one eadfile, according 17.3</assert></rule>
               </constraint>
             </constraintSpec>
+            <constraintSpec ident="Regexrepositorycode" scheme="isoschematron" type="EHRI" mode="add">
+              <constraint>
+                <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="*[@repositorycode][preceding::ead:control/@repositoryencoding = 'iso15511']">
+                  <let xmlns="http://purl.oclc.org/dsdl/schematron" name="iso15511Pattern" value="'(^([A-Z]{2})|([a-zA-Z]{1})|([a-zA-Z]{3,4}))(-[a-zA-Z0-9:/\-]{1,11})$'"/>
+                  <assert xmlns="http://purl.oclc.org/dsdl/schematron"
+                    test="matches(@repositorycode, $iso15511Pattern)">If the repositoryencoding is set to iso15511, the format of the value of the <emph>repositorycode</emph> attribute of <name/> is constrained to that of the International Standard Identifier for Libraries and Related Organizations (ISIL: ISO 15511): a prefix, a dash, and an identifier. </assert>
+                </rule>
+              </constraint>
+            </constraintSpec>
           </elementSpec>
 
           <elementSpec ident="altformavail" module="EAD" mode="change">
@@ -711,11 +726,11 @@
                 </datatype>
                 <constraintSpec ident="regexLangcode" scheme="isoschematron" mode="add">
                   <constraint>
-                    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="ead:language"
-                        ><assert xmlns="http://purl.oclc.org/dsdl/schematron" role="WP11"
-                        test="matches(@scriptcode, '^([a-zA-Z]{3})$')">The codes should be taken
-                        from ISO639-2b, as specified in the LANGENCODING attribute in
-                        eadheader</assert></rule>
+                    <let xmlns="http://purl.oclc.org/dsdl/schematron" name="langcodes" value="document('https://raw.githubusercontent.com/ParthenosWP4/standardsLibrary/master/ISO/ISO639/IANA2TEI/ISO639_TEI.xml')"/>
+                    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="*[exists(@langcode)]">
+                      <let xmlns="http://purl.oclc.org/dsdl/schematron" name="code" value="normalize-space(@langcode)"/>
+                      <assert xmlns="http://purl.oclc.org/dsdl/schematron" test="$langcodes//tei:f[@name='subType']/tei:symbol/@value = $code ">The langcode attribute should contain a code from the ISO 639 codelist. </assert>
+                    </rule>
                   </constraint>
                 </constraintSpec>
                 <remarks>
@@ -733,17 +748,45 @@
                 <datatype>
                   <rng:text/>
                 </datatype>
-                <constraintSpec ident="regexScriptcode" scheme="isoschematron" mode="add">
+                <constraintSpec ident="ISOcode-Scriptcode" scheme="isoschematron" mode="add">
                   <constraint>
-                    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="ead:language"
-                        ><assert xmlns="http://purl.oclc.org/dsdl/schematron" role="WP11"
-                        test="matches(@scriptcode, '^([a-zA-Z]{4})$')">The code should be taken from
-                        ISO 15924 Code for the Representation of Names of Scripts.</assert></rule>
+                    <let xmlns="http://purl.oclc.org/dsdl/schematron" name="scriptcodes" value="document('https://raw.githubusercontent.com/ParthenosWP4/standardsLibrary/master/ISO/ISO15924/ISO159242XML/ISO15924_TEI.xml')"/>
+                    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="*[exists(@scriptcode)]">
+                      <let xmlns="http://purl.oclc.org/dsdl/schematron" name="code" value="normalize-space(@scriptcode)"/>
+                      <assert xmlns="http://purl.oclc.org/dsdl/schematron"
+                        test="$scriptcodes//tei:f[@name='code']/tei:symbol/@value = $code "> The script or scriptcode attribute should contain a code from the iso_15924 codelist. </assert>
+                    </rule>
                   </constraint>
                 </constraintSpec>
                 <remarks>
                   <p>The code should be taken from ISO 15924 Code for the Representation of Names of
                     Scripts.</p>
+                </remarks>
+              </attDef>
+            </attList>
+          </classSpec>
+          <classSpec ident="att.coded" type="atts" module="EAD" mode="replace">
+            <desc>Groups together various attribute used to provide additional codes on
+              elements</desc>
+            <attList>
+              <attDef ident="countrycode">
+                <desc>A unique code for the country in which the materials being
+                  described are held.</desc>
+                <datatype>
+                  <rng:data type="token"/>
+                </datatype>
+                <constraintSpec ident="ISO-countrycode" scheme="isoschematron" mode="add">
+                  <constraint>
+                    <let xmlns="http://purl.oclc.org/dsdl/schematron" name="countrycodes" value="document('https://raw.githubusercontent.com/ParthenosWP4/standardsLibrary/master/ISO/ISO3166/ISO3166_TEI.xml')"/>
+                    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="*[exists(@countrycode)]">
+                      <let xmlns="http://purl.oclc.org/dsdl/schematron" name="code" value="normalize-space(@countrycode)"/>
+                      <assert xmlns="http://purl.oclc.org/dsdl/schematron" test="$countrycodes//tei:f[@name='a2code']/tei:symbol/@value = $code "> The countrycode attribute should contain a code from the ISO 3166-1 codelist.</assert>
+                    </rule>
+                  </constraint>
+                </constraintSpec>
+                <remarks>
+                  <p>Codes are to be taken from ISO 3166-1 Codes for the
+                    Representation of Names of Countries, column A2.</p>
                 </remarks>
               </attDef>
             </attList>
