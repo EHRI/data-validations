@@ -34,6 +34,18 @@
           source="https://raw.githubusercontent.com/ParthenosWP4/standardsLibrary/master/archivalDescription/EAD/odd/EADSpec.xml">
           <moduleRef key="EAD"/>
           <!-- constraints on elements -->
+          <elementSpec ident="altformavail" module="EAD" mode="change">
+            <constraintSpec ident="copyLinking" scheme="isoschematron" type="EHRI" mode="add">
+              <constraint>
+                <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="ead:altformavail/ead:p">
+                  <assert xmlns="http://purl.oclc.org/dsdl/schematron" role="WP11"
+                    test="not(normalize-space(.))"> If the element altforlavail is not empty, you
+                    COULD try to identify if the originals are present in the EHRI portal and make a
+                    link between the two descriptions</assert>
+                </rule>
+              </constraint>
+            </constraintSpec>
+          </elementSpec>
           <elementSpec ident="archdesc" mode="change">
             <constraintSpec ident="EHRINamespace" scheme="isoschematron" mode="add">
               <constraint>
@@ -290,15 +302,16 @@
               <constraint>
                 <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="ead:change">
                   <!-- 'change' element in 'revisiondesc' -->
-                  <assert xmlns="http://purl.oclc.org/dsdl/schematron" test=".[ead:date and ead:item]" diagnostics="change-1"> 'revisiondesc/change' element must
-                    contain both a date and an item subelement. </assert>
+                  <assert xmlns="http://purl.oclc.org/dsdl/schematron"
+                    test=".[ead:date and ead:item]" diagnostics="change-1"> 'revisiondesc/change'
+                    element must contain both a date and an item subelement. </assert>
                 </rule>
               </constraint>
             </constraintSpec>
             <constraintSpec ident="dateNotEmpty" scheme="isoschematron" type="EHRI" mode="add">
               <constraint>
-                <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="ead:change"
-                    ><assert xmlns="http://purl.oclc.org/dsdl/schematron" role="SHOULD-WP17"
+                <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="ead:change"><assert
+                    xmlns="http://purl.oclc.org/dsdl/schematron" role="SHOULD-WP17"
                     test="normalize-space(ead:date)">a revisiondesc/change SHOULD have a not empty
                     date</assert></rule>
               </constraint>
@@ -316,7 +329,7 @@
               <constraint>
                 <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="ead:controlaccess"
                     ><assert xmlns="http://purl.oclc.org/dsdl/schematron" role="COULD"
-                    test="ead:place">controlaccess COULD have a place</assert></rule>
+                    test="ead:geogname">controlaccess COULD have a geogname</assert></rule>
               </constraint>
             </constraintSpec>
             <constraintSpec ident="controlaccessPersnamePossible" scheme="isoschematron" type="EHRI">
@@ -331,6 +344,26 @@
                 <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="ead:controlaccess">
                   <assert xmlns="http://purl.oclc.org/dsdl/schematron" role="COULD"
                     test="ead:orgname">controlaccess COULD have a orgname</assert></rule>
+              </constraint>
+            </constraintSpec>
+            <constraintSpec ident="authfilenumberPossible" scheme="isoschematron" type="EHRU">
+            <constraint>
+              <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="ead:controlaccess">
+                <assert xmlns="http://purl.oclc.org/dsdl/schematron" role="COULD-WP11"
+                  test=".[@authfilenumber and @source]"> Access points could be chosen in an authority
+                  list. This list should be declared in a @source attribute. The related id of this
+                  authority should be declared in an @authfilenumber attribute </assert>
+              </rule>
+            </constraint>
+            </constraintSpec>
+          </elementSpec>
+          <elementSpec ident="date" module="EAD" mode="change">
+            <constraintSpec ident="dateNormal" scheme="isoschematron" type="EHRI" mode="add">
+              <constraint>
+                <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="ead:date"><assert
+                  xmlns="http://purl.oclc.org/dsdl/schematron" role="WP11"
+                  test="matches(@normal, '^(([0-9]|[1-9][0-9]|[1-9][0-9]{2}|[1-9][0-9]{3}))-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01])$')"
+                  >@normal attribute must respect ISO8601 pattern = YYYY-MM-DD</assert></rule>
               </constraint>
             </constraintSpec>
           </elementSpec>
@@ -425,16 +458,20 @@
             </constraintSpec>
             <constraintSpec ident="creationDesirable" scheme="isoschematron" type="EHRI" mode="add">
               <constraint>
-                <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="ead:eadid">
-                  
-                  <assert
-                    xmlns="http://purl.oclc.org/dsdl/schematron" 
-                    role="SHOULD-WP17"
-                    test="@mainagencycode">
-                    eadid SHOULD contain a mainagencycode attribute
-                  </assert>
-                
-                
+                <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="ead:eadid"> <assert
+                    xmlns="http://purl.oclc.org/dsdl/schematron" role="SHOULD-WP17"
+                    test="@mainagencycode"> eadid SHOULD contain a mainagencycode attribute
+                  </assert> </rule>
+              </constraint>
+            </constraintSpec>
+          </elementSpec>
+          <elementSpec ident="langmaterial" module="EAD" mode="change">
+            <constraintSpec ident="langmaterialLanguage" scheme="isoschematron" type="EHRI"
+              mode="add">
+              <constraint>
+                <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="ead:langmaterial">
+                  <assert xmlns="http://purl.oclc.org/dsdl/schematron" role="WP11"
+                    test="ead:language">langmaterial COULD have a language sub element</assert>
                 </rule>
               </constraint>
             </constraintSpec>
@@ -455,6 +492,28 @@
               </constraint>
             </constraintSpec>
           </elementSpec>
+          <elementSpec ident="originalsloc" module="EAD" mode="change">
+            <constraintSpec ident="originalsLinking" scheme="isoschematron" type="EHRI" mode="add">
+              <constraint>
+                <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="ead:originalsloc/ead:p">
+                  <assert xmlns="http://purl.oclc.org/dsdl/schematron" role="WP11"
+                    test="not(normalize-space(.))"> If the element originalsloc is not empty, you
+                    COULD try to identify if copies are present in the EHRI portal and make a link
+                    between the two descriptions </assert>
+                </rule>
+              </constraint>
+            </constraintSpec>
+          </elementSpec>
+          <!--<elementSpec ident="persname" mode="change">
+            <constraintSpec ident="familynameCommaGivenname" scheme="isoschematron">
+              <constraint>
+                <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="ead:persname">
+                  <assert xmlns="http://purl.oclc.org/dsdl/schematron" role="SHOULD-WP11"
+                    test="[0-9a-zA-Z]+(,[0-9a-zA-Z]+)*">Person names should be structured like this : Family name, given name</assert>
+                </rule>
+              </constraint>
+            </constraintSpec>
+          </elementSpec>-->
           <elementSpec ident="physdesc" mode="change">
             <constraintSpec ident="nonemptyPhysdescDesirable" scheme="isoschematron" type="EHRI"
               mode="add">
@@ -521,17 +580,10 @@
             <constraintSpec ident="normalDesirableOrNotEmpty" scheme="isoschematron" type="EHRI"
               mode="add">
               <constraint>
-                <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="ead:unitdate">
-                  
-                  <assert
-                    xmlns="http://purl.oclc.org/dsdl/schematron"
-                    role="COULD-WP17"
-                    test="text() or normalize-space(@normal)">
-                    unitdate should be not empty or have a
-                    non-empty @normal attribute
-                  </assert>
-                
-                </rule>
+                <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="ead:unitdate"> <assert
+                    xmlns="http://purl.oclc.org/dsdl/schematron" role="COULD-WP17"
+                    test="text() or normalize-space(@normal)"> unitdate should be not empty or have
+                    a non-empty @normal attribute </assert> </rule>
               </constraint>
             </constraintSpec>
             <constraintSpec ident="normalNotEmtpy" scheme="isoschematron" type="EHRI" mode="add">
@@ -545,28 +597,28 @@
             <constraintSpec ident="normalRegex" scheme="isoschematron" type="EHRI" mode="add">
               <constraint>
                 <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="ead:unitdate">
-                <!-- check date format -->
-                <assert xmlns="http://purl.oclc.org/dsdl/schematron" role="MUST-EAD"
-                  test="matches(@normal, '^(\d{4}-?\d{2}-?\d{2}/?){1,2}$')">date format MUST be
-                  valid</assert>
-                <!-- check existence of start date -->
-                <let xmlns="http://purl.oclc.org/dsdl/schematron" name="start-date"
-                  value="replace(@normal, '/.*', '')"/>
-                <let xmlns="http://purl.oclc.org/dsdl/schematron" name="start-date"
-                  value="replace($start-date, '-', '')"/>
-                <let xmlns="http://purl.oclc.org/dsdl/schematron" name="start-date"
-                  value="string-join((substring($start-date, 1, 4), substring($start-date, 5, 2), substring($start-date, 7, 2)), '-')"/>
-                <assert xmlns="http://purl.oclc.org/dsdl/schematron" role="MUST-EAD"
-                  test="$start-date castable as xs:date">start date MUST exist</assert>
-                <!-- check existence of end date -->
-                <let xmlns="http://purl.oclc.org/dsdl/schematron" name="end-date"
-                  value="replace(@normal, '.*/', '')"/>
-                <let xmlns="http://purl.oclc.org/dsdl/schematron" name="end-date"
-                  value="replace($end-date, '-', '')"/>
-                <let xmlns="http://purl.oclc.org/dsdl/schematron" name="end-date"
-                  value="string-join((substring($end-date, 1, 4), substring($end-date, 5, 2), substring($end-date, 7, 2)), '-')"/>
-                <assert role="MUST-EAD" test="$end-date castable as xs:date">end date MUST
-                  exist</assert>
+                  <!-- check date format -->
+                  <assert xmlns="http://purl.oclc.org/dsdl/schematron" role="MUST-EAD"
+                    test="matches(@normal, '^(\d{4}-?\d{2}-?\d{2}/?){1,2}$')">date format MUST be
+                    valid</assert>
+                  <!-- check existence of start date -->
+                  <let xmlns="http://purl.oclc.org/dsdl/schematron" name="start-date"
+                    value="replace(@normal, '/.*', '')"/>
+                  <let xmlns="http://purl.oclc.org/dsdl/schematron" name="start-date"
+                    value="replace($start-date, '-', '')"/>
+                  <let xmlns="http://purl.oclc.org/dsdl/schematron" name="start-date"
+                    value="string-join((substring($start-date, 1, 4), substring($start-date, 5, 2), substring($start-date, 7, 2)), '-')"/>
+                  <assert xmlns="http://purl.oclc.org/dsdl/schematron" role="MUST-EAD"
+                    test="$start-date castable as xs:date">start date MUST exist</assert>
+                  <!-- check existence of end date -->
+                  <let xmlns="http://purl.oclc.org/dsdl/schematron" name="end-date"
+                    value="replace(@normal, '.*/', '')"/>
+                  <let xmlns="http://purl.oclc.org/dsdl/schematron" name="end-date"
+                    value="replace($end-date, '-', '')"/>
+                  <let xmlns="http://purl.oclc.org/dsdl/schematron" name="end-date"
+                    value="string-join((substring($end-date, 1, 4), substring($end-date, 5, 2), substring($end-date, 7, 2)), '-')"/>
+                  <assert role="MUST-EAD" test="$end-date castable as xs:date">end date MUST
+                    exist</assert>
                 </rule>
                 <!-- 
                  My old rule
@@ -577,16 +629,7 @@
               </constraint>
             </constraintSpec>
           </elementSpec>
-          <elementSpec ident="date" module="EAD" mode="change">
-            <constraintSpec ident="dateNormal" scheme="isoschematron" type="EHRI" mode="add">
-              <constraint>
-                <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="ead:date"><assert
-                    xmlns="http://purl.oclc.org/dsdl/schematron" role="WP11"
-                    test="matches(@normal, '^(([0-9]|[1-9][0-9]|[1-9][0-9]{2}|[1-9][0-9]{3}))-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01])$')"
-                    >@normal attribute must respect ISO8601 pattern = YYYY-MM-DD</assert></rule>
-              </constraint>
-            </constraintSpec>
-          </elementSpec>
+          
           <elementSpec ident="unitid" mode="change" module="EAD">
             <constraintSpec ident="notEmpty" scheme="isoschematron" type="EHRI" mode="add">
               <constraint>
@@ -604,70 +647,27 @@
                     >unitid's MUST be unique within one eadfile, according 17.3</assert></rule>
               </constraint>
             </constraintSpec>
-            <constraintSpec ident="Regexrepositorycode" scheme="isoschematron" type="EHRI" mode="add">
+            <constraintSpec ident="Regexrepositorycode" scheme="isoschematron" type="EHRI"
+              mode="add">
               <constraint>
-                <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="*[@repositorycode][preceding::ead:control/@repositoryencoding = 'iso15511']">
-                  <let xmlns="http://purl.oclc.org/dsdl/schematron" name="iso15511Pattern" value="'(^([A-Z]{2})|([a-zA-Z]{1})|([a-zA-Z]{3,4}))(-[a-zA-Z0-9:/\-]{1,11})$'"/>
+                <rule xmlns="http://purl.oclc.org/dsdl/schematron"
+                  context="*[@repositorycode][preceding::ead:control/@repositoryencoding = 'iso15511']">
+                  <let xmlns="http://purl.oclc.org/dsdl/schematron" name="iso15511Pattern"
+                    value="'(^([A-Z]{2})|([a-zA-Z]{1})|([a-zA-Z]{3,4}))(-[a-zA-Z0-9:/\-]{1,11})$'"/>
                   <assert xmlns="http://purl.oclc.org/dsdl/schematron"
-                    test="matches(@repositorycode, $iso15511Pattern)">If the repositoryencoding is set to iso15511, the format of the value of the <emph>repositorycode</emph> attribute of <name/> is constrained to that of the International Standard Identifier for Libraries and Related Organizations (ISIL: ISO 15511): a prefix, a dash, and an identifier. </assert>
+                    test="matches(@repositorycode, $iso15511Pattern)">If the repositoryencoding is
+                    set to iso15511, the format of the value of the <emph>repositorycode</emph>
+                    attribute of <name/> is constrained to that of the International Standard
+                    Identifier for Libraries and Related Organizations (ISIL: ISO 15511): a prefix,
+                    a dash, and an identifier. </assert>
                 </rule>
               </constraint>
             </constraintSpec>
           </elementSpec>
 
-          <elementSpec ident="altformavail" module="EAD" mode="change">
-            <constraintSpec ident="copyLinking" scheme="isoschematron" type="EHRI" mode="add">
-              
-              
-              <constraint>
-                
-                
-                
-                <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="ead:altformavail/ead:p">
-                  <assert xmlns="http://purl.oclc.org/dsdl/schematron" role="WP11"
-                    test="not(normalize-space(.))">
-                    If the element altforlavail is not empty, 
-                    you COULD try to identify if the originals are present in the EHRI portal 
-                    and make a link between the two descriptions</assert>
-                </rule>
-                
-                
-                
-              </constraint>
-              
-              
-            </constraintSpec>
-          </elementSpec>
-          <elementSpec ident="originalsloc" module="EAD" mode="change">
-            <constraintSpec ident="originalsLinking" scheme="isoschematron" type="EHRI" mode="add">
-              <constraint>
-                <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="ead:originalsloc/ead:p">
-                  <assert xmlns="http://purl.oclc.org/dsdl/schematron" role="WP11"
-                    test="not(normalize-space(.))">
-                    If the element originalsloc is not empty, 
-                    you COULD try to identify if copies are present in the EHRI portal 
-                    and make a link between the two descriptions
-                  </assert>
-                </rule>
-              </constraint>
-            </constraintSpec>
-          </elementSpec>
-          <elementSpec ident="langmaterial" module="EAD" mode="change">
-            <constraintSpec ident="langmaterialLanguage" scheme="isoschematron" type="EHRI"
-              mode="add">
-              <constraint>
-                
-                <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="ead:langmaterial">
-                  
-                  
-                  <assert xmlns="http://purl.oclc.org/dsdl/schematron" role="WP11"
-                    test="ead:language">langmaterial COULD have a language sub element</assert>
-                  
-                  
-                </rule>
-              </constraint>
-            </constraintSpec>
-          </elementSpec>
+          
+          
+          
 
           <!-- Constraints on attributes -->
 
@@ -772,25 +772,17 @@
                 </datatype>
                 <constraintSpec ident="regexLangcode" scheme="isoschematron" mode="add">
                   <constraint>
-                    
-                    
-                    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="*[exists(@langcode)]">
-                      <let 
-                        xmlns="http://purl.oclc.org/dsdl/schematron" 
-                        name="langcodes" 
+                    <rule xmlns="http://purl.oclc.org/dsdl/schematron"
+                      context="*[exists(@langcode)]">
+                      <let xmlns="http://purl.oclc.org/dsdl/schematron" name="langcodes"
                         value="document(' //SOURCE OF THE CODES// ')"/>
-                      <let
-                        xmlns="http://purl.oclc.org/dsdl/schematron" 
-                        name="code" 
+                      <let xmlns="http://purl.oclc.org/dsdl/schematron" name="code"
                         value="normalize-space(@langcode)"/>
-                      <assert 
-                        xmlns="http://purl.oclc.org/dsdl/schematron" 
-                        test="$langcodes//tei:f[@name='subType']/tei:symbol/@value = $code ">
-                        The langcode attribute should contain a code from the ISO 639 codelist.
+                      <assert xmlns="http://purl.oclc.org/dsdl/schematron"
+                        test="$langcodes//tei:f[@name='subType']/tei:symbol/@value = $code "> The
+                        langcode attribute should contain a code from the ISO 639 codelist.
                       </assert>
                     </rule>
-                    
-                    
                   </constraint>
                 </constraintSpec>
                 <remarks>
@@ -801,8 +793,8 @@
             </attList>
           </classSpec>
           <!-- attribute scriptcode -->
-          
-          
+
+
           <classSpec ident="att.scriptcode" type="atts" module="EAD" mode="replace">
             <attList>
               <attDef ident="scriptcode">
@@ -812,11 +804,16 @@
                 </datatype>
                 <constraintSpec ident="ISOcode-Scriptcode" scheme="isoschematron" mode="add">
                   <constraint>
-                    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="*[exists(@scriptcode)]">
-                      <let xmlns="http://purl.oclc.org/dsdl/schematron" name="scriptcodes" value="document('https://raw.githubusercontent.com/ParthenosWP4/standardsLibrary/master/ISO/ISO15924/ISO159242XML/ISO15924_TEI.xml')"/>
-                      <let xmlns="http://purl.oclc.org/dsdl/schematron" name="code" value="normalize-space(@scriptcode)"/>
+                    <rule xmlns="http://purl.oclc.org/dsdl/schematron"
+                      context="*[exists(@scriptcode)]">
+                      <let xmlns="http://purl.oclc.org/dsdl/schematron" name="scriptcodes"
+                        value="document('https://raw.githubusercontent.com/ParthenosWP4/standardsLibrary/master/ISO/ISO15924/ISO159242XML/ISO15924_TEI.xml')"/>
+                      <let xmlns="http://purl.oclc.org/dsdl/schematron" name="code"
+                        value="normalize-space(@scriptcode)"/>
                       <assert xmlns="http://purl.oclc.org/dsdl/schematron"
-                        test="$scriptcodes//tei:f[@name='code']/tei:symbol/@value = $code "> The script or scriptcode attribute should contain a code from the iso_15924 codelist. </assert>
+                        test="$scriptcodes//tei:f[@name='code']/tei:symbol/@value = $code "> The
+                        script or scriptcode attribute should contain a code from the iso_15924
+                        codelist. </assert>
                     </rule>
                   </constraint>
                 </constraintSpec>
@@ -827,30 +824,36 @@
               </attDef>
             </attList>
           </classSpec>
-          
-          
+
+
           <classSpec ident="att.coded" type="atts" module="EAD" mode="replace">
             <desc>Groups together various attribute used to provide additional codes on
               elements</desc>
             <attList>
               <attDef ident="countrycode">
-                <desc>A unique code for the country in which the materials being
-                  described are held.</desc>
+                <desc>A unique code for the country in which the materials being described are
+                  held.</desc>
                 <datatype>
                   <rng:data type="token"/>
                 </datatype>
                 <constraintSpec ident="ISO-countrycode" scheme="isoschematron" mode="add">
                   <constraint>
-                    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="*[exists(@countrycode)]">
-                      <let xmlns="http://purl.oclc.org/dsdl/schematron" name="countrycodes" value="document('https://raw.githubusercontent.com/ParthenosWP4/standardsLibrary/master/ISO/ISO3166/ISO3166_TEI.xml')"/>
-                      <let xmlns="http://purl.oclc.org/dsdl/schematron" name="code" value="normalize-space(@countrycode)"/>
-                      <assert xmlns="http://purl.oclc.org/dsdl/schematron" test="$countrycodes//tei:f[@name='a2code']/tei:symbol/@value = $code "> The countrycode attribute should contain a code from the ISO 3166-1 codelist.</assert>
+                    <rule xmlns="http://purl.oclc.org/dsdl/schematron"
+                      context="*[exists(@countrycode)]">
+                      <let xmlns="http://purl.oclc.org/dsdl/schematron" name="countrycodes"
+                        value="document('https://raw.githubusercontent.com/ParthenosWP4/standardsLibrary/master/ISO/ISO3166/ISO3166_TEI.xml')"/>
+                      <let xmlns="http://purl.oclc.org/dsdl/schematron" name="code"
+                        value="normalize-space(@countrycode)"/>
+                      <assert xmlns="http://purl.oclc.org/dsdl/schematron"
+                        test="$countrycodes//tei:f[@name='a2code']/tei:symbol/@value = $code "> The
+                        countrycode attribute should contain a code from the ISO 3166-1
+                        codelist.</assert>
                     </rule>
                   </constraint>
                 </constraintSpec>
                 <remarks>
-                  <p>Codes are to be taken from ISO 3166-1 Codes for the
-                    Representation of Names of Countries, column A2.</p>
+                  <p>Codes are to be taken from ISO 3166-1 Codes for the Representation of Names of
+                    Countries, column A2.</p>
                 </remarks>
               </attDef>
             </attList>
