@@ -38,8 +38,8 @@
             <constraintSpec ident="copyLinking" scheme="isoschematron" type="EHRI" mode="add">
               <constraint>
                 <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="ead:altformavail/ead:p">
-                  <assert xmlns="http://purl.oclc.org/dsdl/schematron" role="WP11"
-                    test="not(normalize-space(.))"> If the element altforlavail is not empty, you
+                  <assert xmlns="http://purl.oclc.org/dsdl/schematron" role="COULD-WP11"
+                    test="not(normalize-space(.))"> If the element altformavail is not empty, you
                     COULD try to identify if the originals are present in the EHRI portal and make a
                     link between the two descriptions</assert>
                 </rule>
@@ -47,6 +47,7 @@
             </constraintSpec>
           </elementSpec>
           <elementSpec ident="archdesc" mode="change">
+            <!-- Declare the ead namespace as a first constraint  -->
             <constraintSpec ident="EHRINamespace" scheme="isoschematron" mode="add">
               <constraint>
                 <ns xmlns="http://purl.oclc.org/dsdl/schematron" prefix="ead"
