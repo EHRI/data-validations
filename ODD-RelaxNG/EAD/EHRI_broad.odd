@@ -185,6 +185,7 @@
               </constraint>
             </constraintSpec>
           </elementSpec>
+          
           <elementSpec ident="c01" mode="change">
             <constraintSpec ident="levelRequired" scheme="isoschematron" type="EHRI">
               <constraint>
@@ -236,14 +237,6 @@
                 <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="ead:c06">
                   <assert xmlns="http://purl.oclc.org/dsdl/schematron" role="MUST-WP19"
                     test="@level">c06 MUST have a level-attribute</assert></rule>
-              </constraint>
-            </constraintSpec>
-            
-            <constraintSpec ident="unNumberedC" scheme="isoschematron" type="EHRI">
-              <constraint>
-                <rule xmlns="http://purl.oclc.org/dsdl/schematron" role="SHOULD-WP11">
-                  <!-- Need a constraint when ead comes with unnumbered <c> elements -->
-                </rule>
               </constraint>
             </constraintSpec>
             
@@ -313,7 +306,7 @@
                 <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="ead:change">
                   <!-- 'change' element in 'revisiondesc' -->
                   <assert xmlns="http://purl.oclc.org/dsdl/schematron"
-                    test=".[ead:date and ead:item]" diagnostics="change-1"> 'revisiondesc/change'
+                    test=".[ead:date and ead:item]"> 'revisiondesc/change'
                     element must contain both a date and an item subelement. </assert>
                 </rule>
               </constraint>
@@ -413,8 +406,16 @@
               <constraint>
                 <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="ead:dsc">
                   <assert xmlns="http://purl.oclc.org/dsdl/schematron" role="MUST-EAD"
-                    test="not(@type ='othertype') or (@othertype and not(@othertype=''))">dsc MUST
-                    have a type attribute</assert></rule>
+                    test="not(@type ='othertype') or (@othertype and not(@othertype=''))">if dsc's type attribute has "othertype" for value, dsc MUST
+                    have a not empty othertype attribute</assert>
+                </rule>
+              </constraint>
+            </constraintSpec>
+            <constraintSpec ident="unNumberedC" scheme="isoschematron" type="EHRI">
+              <constraint>
+                <rule xmlns="http://purl.oclc.org/dsdl/schematron" role="SHOULD-WP11" context="ead:dsc | ead:c01 | ead:c02 | ead:c03 | ead:c04 | ead:c05 ">
+                  <assert xmlns="http://purl.oclc.org/dsdl/schematron" test="not(ead:c)">the dsc subelements should not be c elements, but from c01 to c06</assert>
+                </rule>
               </constraint>
             </constraintSpec>
           </elementSpec>
