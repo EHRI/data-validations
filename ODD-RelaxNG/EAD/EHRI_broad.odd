@@ -47,7 +47,7 @@
             </constraintSpec>
           </elementSpec>
           <elementSpec ident="archdesc" mode="change">
-            <!-- Declare the ead namespace as a first constraint  -->
+            <!-- Technical requirement : Declare the ead namespace as a first constraint  -->
             <constraintSpec ident="EHRINamespace" scheme="isoschematron" mode="add">
               <constraint>
                 <ns xmlns="http://purl.oclc.org/dsdl/schematron" prefix="ead"
@@ -238,6 +238,15 @@
                     test="@level">c06 MUST have a level-attribute</assert></rule>
               </constraint>
             </constraintSpec>
+            
+            <constraintSpec ident="unNumberedC" scheme="isoschematron" type="EHRI">
+              <constraint>
+                <rule xmlns="http://purl.oclc.org/dsdl/schematron" role="SHOULD-WP11">
+                  <!-- Need a constraint when ead comes with unnumbered <c> elements -->
+                </rule>
+              </constraint>
+            </constraintSpec>
+            
             <constraintSpec ident="noc07c12" scheme="isoschematron" type="EHRI" mode="add">
               <constraint>
                 <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="ead:c06">
@@ -414,7 +423,7 @@
               mode="add">
               <constraint>
                 <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="ead:eadheader">
-                  <assert xmlns="http://purl.oclc.org/dsdl/schematron"
+                  <assert xmlns="http://purl.oclc.org/dsdl/schematron" role="SHOULD-WP11"
                     test="ead:profiledesc/ead:langusage/@langcode = 'eng'">If the language of the
                     description is not English, a parallel form of the title in English should be
                     added.</assert>
@@ -443,7 +452,7 @@
               mode="add">
               <constraint>
                 <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="ead:eadheader"><assert
-                    xmlns="http://purl.oclc.org/dsdl/schematron"
+                    xmlns="http://purl.oclc.org/dsdl/schematron" role="COULD-WP11"
                     test="ead:creation/ead:date and normalize-space(ead:creation/ead:date)"
                     >eadheader COULD have a non-empty creation-date</assert></rule>
               </constraint>
@@ -776,7 +785,7 @@
                     <rule xmlns="http://purl.oclc.org/dsdl/schematron"
                       context="*[exists(@langcode)]">
                       <let xmlns="http://purl.oclc.org/dsdl/schematron" name="langcodes"
-                        value="document(' //SOURCE OF THE CODES// ')"/>
+                        value="document('https://raw.githubusercontent.com/ParthenosWP4/standardsLibrary/master/ISO/ISO639/IANA2TEI/ISO639_TEI.xml')"/>
                       <let xmlns="http://purl.oclc.org/dsdl/schematron" name="code"
                         value="normalize-space(@langcode)"/>
                       <assert xmlns="http://purl.oclc.org/dsdl/schematron"
