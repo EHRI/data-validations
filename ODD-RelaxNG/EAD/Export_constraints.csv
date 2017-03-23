@@ -42,11 +42,12 @@ ead:unitid,"a did MUST have a unitid, according 17.3 and WP19",unitidRequired,MU
 ead:unittitle,"a did MUST have a unittitle, according 17.3",unittitleRequired,MUST-WP19,ead:did
 count(ead:unittitle[text()]) > 0,a did MUST have at least one non-empty unittitle,unittitleNotEmpty,MUST-WP19,ead:did
 @type,dsc MUST have a type attribute,dscType,MUST-EAD,ead:dsc
-not(@type ='othertype') or (@othertype and not(@othertype='')),dsc MUST have a type attribute,dscothertype,MUST-EAD,ead:dsc
-ead:profiledesc/ead:langusage/@langcode = 'eng',"If the language of the description is not English, a parallel form of the title in English should be added.",parallelTitleEnglish,,ead:eadheader
+not(@type ='othertype') or (@othertype and not(@othertype='')),"if dsc's type attribute has ""othertype"" for value, dsc MUST have a not empty othertype attribute",dscothertype,MUST-EAD,ead:dsc
+not(ead:c),"the dsc subelements should not be c elements, but from c01 to c06",unNumberedC,,ead:dsc | ead:c01 | ead:c02 | ead:c03 | ead:c04 | ead:c05 
+ead:profiledesc/ead:langusage/@langcode = 'eng',"If the language of the description is not English, a parallel form of the title in English should be added.",parallelTitleEnglish,SHOULD-WP11,ead:eadheader
 ead:profiledesc,eadheader must contain a profiledesc element,profiledescRequired,MUST-WP19,ead:eadheader
 ead:profiledesc/ead:langusage/ead:language/@langcode = 'eng',"If the language of the description is not English, a parallel form of the title in English should be added.",langcodeNotEng,SHOULD-WP11,ead:eadheader
-ead:creation/ead:date and normalize-space(ead:creation/ead:date),eadheader COULD have a non-empty creation-date,creationDateNotempty,,ead:eadheader
+ead:creation/ead:date and normalize-space(ead:creation/ead:date),eadheader COULD have a non-empty creation-date,creationDateNotempty,COULD-WP11,ead:eadheader
 normalize-space(.),eadid must contain text,mustContainText,MUST-WP19,ead:eadid
 @mainagencycode,eadid SHOULD contain a mainagencycode attribute,creationDesirable,SHOULD-WP17,ead:eadid
 ead:language,langmaterial COULD have a language sub element,langmaterialLanguage,WP11,ead:langmaterial
