@@ -14,7 +14,7 @@
    <!-- ************ -->
    <pattern id="EHRI_broad-archdesc-constraint-levelRequired-3">
                 <rule context="ead:archdesc">
-                  <assert role="MUST-WP19" test="@level">archdesc MUST have a level-attribute</assert>
+                  <assert role="MUST-WP19" test="@level" >archdesc MUST have a level-attribute</assert>
                 </rule>
               </pattern>
    <pattern id="EHRI_broad-archdesc-constraint-archdescLevelValues-4">
