@@ -11,7 +11,7 @@ import xml.etree.ElementTree as ET
  # 4) rule/@test
  # 5) rule/text()
 
-tree = ET.parse('EHRI_broad.odd')
+tree = ET.parse('EHRI_EAD.odd')
 
 ns = {'tei' : 'http://www.tei-c.org/ns/1.0', 'sch' : 'http://purl.oclc.org/dsdl/schematron' }
 
@@ -19,6 +19,11 @@ results = []
 for constraints in tree.iter('{http://www.tei-c.org/ns/1.0}constraintSpec'):
 	dic = {}
 	dic['ident'] = constraints.attrib['ident']
+
+	descs = constraints.iter('{http://www.tei-c.org/ns/1.0}desc')
+	for desc in descs:
+		rav = ''.join(desc.itertext())
+		dic['description'] = rav.replace('\n',' ').replace('\r', '').replace('  ', '').strip()
 	
 	rules = constraints.iter('{http://purl.oclc.org/dsdl/schematron}rule')
 	for rule in rules :
@@ -29,8 +34,6 @@ for constraints in tree.iter('{http://www.tei-c.org/ns/1.0}constraintSpec'):
 	
 				dic['test'] = asserts.attrib['test'].replace('\n',' ').replace('\r', '').replace('  ', '').strip()
 		
-				rav = ''.join(asserts.itertext())
-				dic['text'] = rav.replace('\n',' ').replace('\r', '').replace('  ', '').strip()
 				if 'role' in asserts.attrib:
 					dic['role'] = asserts.attrib['role'].replace('\n',' ').replace('\r', '').replace('  ', '').strip()
 				else:
@@ -40,8 +43,7 @@ for constraints in tree.iter('{http://www.tei-c.org/ns/1.0}constraintSpec'):
 			for reports in constraints.iter('{http://purl.oclc.org/dsdl/schematron}report'):
 
 				dic['test'] = reports.attrib['test'].replace('\n',' ').replace('\r', '').replace('  ', '').strip()
-				rav = ''.join(reports.itertext())
-				dic['text'] = rav.replace('\n',' ').replace('\r', '').replace('  ', '').strip()
+
 				if 'role' in reports.attrib:
 					dic['role'] = reports.attrib['role'].replace('\n',' ').replace('\r', '').replace('  ', '').strip()
 				else:
