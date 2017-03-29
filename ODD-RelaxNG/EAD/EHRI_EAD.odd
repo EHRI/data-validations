@@ -29,7 +29,24 @@
     <body>
       <div type="foreword">
         <head>Guidelines</head>
-        <p>...</p>
+        <p>In the context of the <ref target="http://ehri-project.eu">EHRI project</ref>, we created
+          an ODD base on the EAD ODD maintained by the Parthenos project, to document the specific
+          rules and constraints of the EHRI data model for archival descriptions. In this new ODD
+          file, called EHRI_EAD.odd, the generic EAD specification is imported and serves the
+          baseline of specification. The additional constraints are added only to the elements that
+          they refer to.</p>
+        <p> The constraints added to EAD ensures a smooth ingestion of external data in the EHRI's
+          database.</p>
+        <p>First, some EAD elements are required for the good functioning of the database, for
+          instance unique identifiers for all the descriptions (contained in <gi>eadid</gi>).</p>
+        <p>
+          Second, some elements are made mandatory for more qualitative reasons: for instance to ease the
+          discoverability of its resources, EHRI wants that a minimal description in English is
+          provided with each description unit. We encourage the use of ISO standards for the
+          representation of languages, scripts, dates, etc, as well as the interlinkage of entities,
+          via the use of authority lists.</p>
+          <p>Schematron rules were already used in EHRI, so we
+          integrated them directly in this EHRI-EAD ODD.</p>
       </div>
 
       <div type="specification">
@@ -213,7 +230,8 @@
               <desc>A <gi>scopecontent</gi> element SHOULD be present in the description at least in
                   <gi>archdesc</gi>, if not in the <gi>c</gi> elements.</desc>
               <constraint>
-                <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="ead:archdesc" role="SHOULD">
+                <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="ead:archdesc"
+                  role="SHOULD">
                   <assert xmlns="http://purl.oclc.org/dsdl/schematron"
                     test="ead:scopecontent or ead:dsc/ead:c01/descendant-or-self::ead:scopecontent"
                     >a scopecontent element SHOULD be present at least in archdesc if not in the c
@@ -677,7 +695,8 @@
               <desc><gi>descrules</gi> has a default value added automatically by EHRI. Therefore,
                 the content of <gi>descrules</gi> will be overwritten</desc>
               <constraint>
-                <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="ead:profiledesc" role="SHOULD">
+                <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="ead:profiledesc"
+                  role="SHOULD">
                   <assert xmlns="http://purl.oclc.org/dsdl/schematron"
                     test="not(normalize-space(ead:descrules))">descrules has a default value added
                     automatically by EHRI. Therefore, the content of descrules will be
@@ -950,7 +969,7 @@
                   <desc>The <att>langcode</att> attribute SHOULD contain a code from the ISO 639
                     codelist. This list is maintained in TEI by the Parthenos project under the link
                       <ref
-                        target="https://github.com/ParthenosWP4/standardsLibrary/tree/master/ISO/ISO639"
+                      target="https://github.com/ParthenosWP4/standardsLibrary/tree/master/ISO/ISO639"
                     /></desc>
                   <constraint>
                     <rule xmlns="http://purl.oclc.org/dsdl/schematron"
@@ -986,7 +1005,7 @@
                 <constraintSpec ident="ISOcode-Scriptcode" scheme="isoschematron" mode="add">
                   <desc>The <att>scriptcode</att> attribute SHOULD contain a code from the ISO 15924
                     codelist. This list is maintained in TEI by the Parthenos project under the link
-                    <ref
+                      <ref
                       target="https://github.com/ParthenosWP4/standardsLibrary/tree/master/ISO/ISO15924"
                     /></desc>
                   <constraint>
@@ -1023,9 +1042,9 @@
                   <rng:data type="token"/>
                 </datatype>
                 <constraintSpec ident="ISO-countrycode" scheme="isoschematron" mode="add">
-                  <desc>The <att>countrycode</att> attribute SHOULD contain a code from the ISO 3166-1
-                    codelist. This list is maintained in TEI by the Parthenos project under the link
-                    <ref
+                  <desc>The <att>countrycode</att> attribute SHOULD contain a code from the ISO
+                    3166-1 codelist. This list is maintained in TEI by the Parthenos project under
+                    the link <ref
                       target="https://github.com/ParthenosWP4/standardsLibrary/tree/master/ISO/ISO3166"
                     /></desc>
                   <constraint>
