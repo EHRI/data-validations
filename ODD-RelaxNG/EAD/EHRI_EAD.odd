@@ -39,14 +39,13 @@
           database.</p>
         <p>First, some EAD elements are required for the good functioning of the database, for
           instance unique identifiers for all the descriptions (contained in <gi>eadid</gi>).</p>
-        <p>
-          Second, some elements are made mandatory for more qualitative reasons: for instance to ease the
-          discoverability of its resources, EHRI wants that a minimal description in English is
-          provided with each description unit. We encourage the use of ISO standards for the
-          representation of languages, scripts, dates, etc, as well as the interlinkage of entities,
-          via the use of authority lists.</p>
-          <p>Schematron rules were already used in EHRI, so we
-          integrated them directly in this EHRI-EAD ODD.</p>
+        <p> Second, some elements are made mandatory for more qualitative reasons: for instance to
+          ease the discoverability of its resources, EHRI wants that a minimal description in
+          English is provided with each description unit. We encourage the use of ISO standards for
+          the representation of languages, scripts, dates, etc, as well as the interlinkage of
+          entities, via the use of authority lists.</p>
+        <p>Schematron rules were already used in EHRI, so we integrated them directly in this
+          EHRI-EAD ODD.</p>
       </div>
 
       <div type="specification">
@@ -305,8 +304,8 @@
               <desc>The component elements SHOULD be numbered components between <gi>c01</gi> and
                   <gi>c06</gi></desc>
               <constraint>
-                <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="not(ead:c06)">
-                  <assert xmlns="http://purl.oclc.org/dsdl/schematron" role="SHOULD" test="ead:c07"
+                <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="ead:c06">
+                  <assert xmlns="http://purl.oclc.org/dsdl/schematron" role="SHOULD" test="not(ead:c07)"
                     >c subelements SHOULD be between c01 and c06</assert>
                 </rule>
               </constraint>
@@ -317,8 +316,8 @@
               <desc>The component elements SHOULD be numbered components between <gi>c01</gi> and
                   <gi>c06</gi></desc>
               <constraint>
-                <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="not(ead:c07)">
-                  <assert xmlns="http://purl.oclc.org/dsdl/schematron" role="SHOULD" test="ead:c08"
+                <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="ead:c07">
+                  <assert xmlns="http://purl.oclc.org/dsdl/schematron" role="SHOULD" test="not(ead:c08)"
                     >c subelements SHOULD be between c01 and c06</assert>
                 </rule>
               </constraint>
@@ -329,8 +328,8 @@
               <desc>The component elements SHOULD be numbered components between <gi>c01</gi> and
                   <gi>c06</gi></desc>
               <constraint>
-                <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="not(ead:c08)">
-                  <assert xmlns="http://purl.oclc.org/dsdl/schematron" role="SHOULD" test="ead:c09"
+                <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="ead:c08">
+                  <assert xmlns="http://purl.oclc.org/dsdl/schematron" role="SHOULD" test="not(ead:c09)"
                     >c subelements SHOULD be between c01 and c06</assert>
                 </rule>
               </constraint>
@@ -341,8 +340,8 @@
               <desc>The component elements SHOULD be numbered components between <gi>c01</gi> and
                   <gi>c06</gi></desc>
               <constraint>
-                <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="not(ead:c09)">
-                  <assert xmlns="http://purl.oclc.org/dsdl/schematron" role="SHOULD" test="ead:c10"
+                <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="ead:c09">
+                  <assert xmlns="http://purl.oclc.org/dsdl/schematron" role="SHOULD" test="not(ead:c10)"
                     >c subelements SHOULD be between c01 and c06</assert>
                 </rule>
               </constraint>
@@ -353,8 +352,8 @@
               <desc>The component elements SHOULD be numbered components between <gi>c01</gi> and
                   <gi>c06</gi></desc>
               <constraint>
-                <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="not(ead:c10)">
-                  <assert xmlns="http://purl.oclc.org/dsdl/schematron" role="SHOULD" test="ead:c11"
+                <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="ead:c10">
+                  <assert xmlns="http://purl.oclc.org/dsdl/schematron" role="SHOULD" test="not(ead:c11)"
                     >c subelements SHOULD be between c01 and c06</assert>
                 </rule>
               </constraint>
@@ -365,8 +364,8 @@
               <desc>The component elements SHOULD be numbered components between <gi>c01</gi> and
                   <gi>c06</gi></desc>
               <constraint>
-                <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="not(ead:c11)">
-                  <assert xmlns="http://purl.oclc.org/dsdl/schematron" role="SHOULD" test="ead:c12"
+                <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="ead:c11">
+                  <assert xmlns="http://purl.oclc.org/dsdl/schematron" role="SHOULD" test="not(ead:c12)"
                     >c subelements SHOULD be between c01 and c06</assert>
                 </rule>
               </constraint>
@@ -715,6 +714,19 @@
                 </rule>
               </constraint>
             </constraintSpec>
+          </elementSpec>
+          <elementSpec ident="titlestmt" module="EAD" mode="change">
+            <constraintSpec ident="authorRequired" scheme="isoschematron" type="EHRI" mode="add">
+              <desc>The <gi>titlestmt</gi> element SHOULD contain a <gi>author</gi> element</desc>
+              <constraint>
+                <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="ead:titlestmt">
+                  <assert xmlns="http://purl.oclc.org/dsdl/schematron" role="SHOULD"
+                    test="ead:author"> The titlestmt element SHOULD contain a author element
+                  </assert>
+                </rule>
+              </constraint>
+            </constraintSpec>
+
           </elementSpec>
           <elementSpec ident="unitdate" mode="change">
             <constraintSpec ident="labelDesirable" scheme="isoschematron" type="EHRI" mode="add">
