@@ -649,7 +649,7 @@
                 <rule xmlns="http://purl.oclc.org/dsdl/schematron"
                   context="ead:controlaccess/ead:persname">
                   <assert xmlns="http://purl.oclc.org/dsdl/schematron" role="SHOULD"
-                    test="[0-9a-zA-Z]+(,[0-9a-zA-Z]+)*">In the access points, Person names SHOULD be
+                    test="matches(., '[0-9a-zA-Z]+(,[0-9a-zA-Z]+)')">In the access points, Person names SHOULD be
                     structured like this : Family name, given name</assert>
                 </rule>
               </constraint>

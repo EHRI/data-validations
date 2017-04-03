@@ -3221,7 +3221,7 @@ element p { <a class="link_ref" href="#TEI.att.EADGlobal" title="att.EADGlobal">
 <span class="element">&lt;/controlaccess&gt;</span></div></td></tr><tr><td class="wovenodd-col1"><span lang="en" class="label">Schematron</span></td><td class="wovenodd-col2"><span>In the access points, Person names SHOULD be structured like this : Family name, given name</span><div class="pre">
 &lt;s:rule context="ead:controlaccess/ead:persname"&gt;
 &lt;s:assert role="SHOULD"
- test="[0-9a-zA-Z]+(,[0-9a-zA-Z]+)*"&gt;In the access points, Person names SHOULD be
+ test="matches(., '[0-9a-zA-Z]+(,[0-9a-zA-Z]+)')"&gt;In the access points, Person names SHOULD be
  structured like this : Family name, given name&lt;/s:assert&gt;
 &lt;/s:rule&gt;</div></td></tr><tr><td class="wovenodd-col1"><span lang="en" class="label">Content model</span></td><td class="wovenodd-col2"><pre class="pre_eg cdata">
 &lt;content autoPrefix="true"/&gt;
@@ -4521,6 +4521,6 @@ element userestrict
 	  Generated from index.xml using XSLT stylesheets version 7.41.0
 
 	       based on http://www.tei-c.org/Stylesheets/
-	       on 2017-04-03T13:47:39Z.
+	       on 2017-04-03T13:57:08Z.
 	       SAXON PE 9.6.0.7.
 		 --></address></div></body></html>

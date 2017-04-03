@@ -5,7 +5,7 @@
          xmlns:teix="http://www.tei-c.org/ns/Examples"
          datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes"
          ns="urn:isbn:1-931666-22-9"><!--
-Schema generated from ODD source 2017-04-03T13:47:49Z. .
+Schema generated from ODD source 2017-04-03T13:57:22Z. .
 TEI Edition: rev5
 TEI Edition Location: http://www.tei-c.org/Vault/P5//
   
@@ -3585,7 +3585,7 @@ TEI Edition Location: http://www.tei-c.org/Vault/P5//
                   id="EHRI_EAD-persname-familynameCommaGivenname-constraint-65">
             <rule xmlns:rng="http://relaxng.org/ns/structure/1.0"
                   context="ead:controlaccess/ead:persname">
-                  <assert role="SHOULD" test="[0-9a-zA-Z]+(,[0-9a-zA-Z]+)*">In the access points, Person names SHOULD be
+                  <assert role="SHOULD" test="matches(., '[0-9a-zA-Z]+(,[0-9a-zA-Z]+)')">In the access points, Person names SHOULD be
                     structured like this : Family name, given name</assert>
                 </rule>
          </pattern>
