@@ -5,7 +5,7 @@
          xmlns:teix="http://www.tei-c.org/ns/Examples"
          datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes"
          ns="urn:isbn:1-931666-22-9"><!--
-Schema generated from ODD source 2017-04-03T13:57:22Z. .
+Schema generated from ODD source 2017-04-05T14:53:49Z. .
 TEI Edition: rev5
 TEI Edition Location: http://www.tei-c.org/Vault/P5//
   
@@ -602,7 +602,6 @@ TEI Edition Location: http://www.tei-c.org/Vault/P5//
          <ref name="model.desc.base"/>
          <ref name="dao"/>
          <ref name="daogrp"/>
-         <ref name="dsc"/>
          <ref name="note"/>
       </choice>
    </define>
@@ -620,6 +619,7 @@ TEI Edition Location: http://www.tei-c.org/Vault/P5//
          <ref name="custodhist"/>
          <ref name="descgrp"/>
          <ref name="fileplan"/>
+         <ref name="index"/>
          <ref name="odd"/>
          <ref name="originalsloc"/>
          <ref name="otherfindaid"/>
@@ -1413,6 +1413,9 @@ TEI Edition Location: http://www.tei-c.org/Vault/P5//
             <zeroOrMore>
                <ref name="model.desc.full"/>
             </zeroOrMore>
+            <zeroOrMore>
+               <ref name="dsc"/>
+            </zeroOrMore>
          </group>
          <ns xmlns="http://purl.oclc.org/dsdl/schematron"
              prefix="ead"
@@ -1746,6 +1749,9 @@ TEI Edition Location: http://www.tei-c.org/Vault/P5//
             <ref name="model.desc.full"/>
          </zeroOrMore>
          <zeroOrMore>
+            <ref name="dsc"/>
+         </zeroOrMore>
+         <zeroOrMore>
             <optional>
                <ref name="thead"/>
             </optional>
@@ -1767,6 +1773,9 @@ TEI Edition Location: http://www.tei-c.org/Vault/P5//
          <ref name="did"/>
          <zeroOrMore>
             <ref name="model.desc.full"/>
+         </zeroOrMore>
+         <zeroOrMore>
+            <ref name="dsc"/>
          </zeroOrMore>
          <zeroOrMore>
             <optional>
@@ -1799,6 +1808,9 @@ TEI Edition Location: http://www.tei-c.org/Vault/P5//
             <ref name="model.desc.full"/>
          </zeroOrMore>
          <zeroOrMore>
+            <ref name="dsc"/>
+         </zeroOrMore>
+         <zeroOrMore>
             <optional>
                <ref name="thead"/>
             </optional>
@@ -1827,6 +1839,9 @@ TEI Edition Location: http://www.tei-c.org/Vault/P5//
          <ref name="did"/>
          <zeroOrMore>
             <ref name="model.desc.full"/>
+         </zeroOrMore>
+         <zeroOrMore>
+            <ref name="dsc"/>
          </zeroOrMore>
          <zeroOrMore>
             <optional>
@@ -1859,6 +1874,9 @@ TEI Edition Location: http://www.tei-c.org/Vault/P5//
             <ref name="model.desc.full"/>
          </zeroOrMore>
          <zeroOrMore>
+            <ref name="dsc"/>
+         </zeroOrMore>
+         <zeroOrMore>
             <optional>
                <ref name="thead"/>
             </optional>
@@ -1889,6 +1907,9 @@ TEI Edition Location: http://www.tei-c.org/Vault/P5//
             <ref name="model.desc.full"/>
          </zeroOrMore>
          <zeroOrMore>
+            <ref name="dsc"/>
+         </zeroOrMore>
+         <zeroOrMore>
             <optional>
                <ref name="thead"/>
             </optional>
@@ -1917,6 +1938,9 @@ TEI Edition Location: http://www.tei-c.org/Vault/P5//
          <ref name="did"/>
          <zeroOrMore>
             <ref name="model.desc.full"/>
+         </zeroOrMore>
+         <zeroOrMore>
+            <ref name="dsc"/>
          </zeroOrMore>
          <zeroOrMore>
             <optional>
@@ -1955,6 +1979,9 @@ TEI Edition Location: http://www.tei-c.org/Vault/P5//
             <ref name="model.desc.full"/>
          </zeroOrMore>
          <zeroOrMore>
+            <ref name="dsc"/>
+         </zeroOrMore>
+         <zeroOrMore>
             <optional>
                <ref name="thead"/>
             </optional>
@@ -1982,6 +2009,9 @@ TEI Edition Location: http://www.tei-c.org/Vault/P5//
          <ref name="did"/>
          <zeroOrMore>
             <ref name="model.desc.full"/>
+         </zeroOrMore>
+         <zeroOrMore>
+            <ref name="dsc"/>
          </zeroOrMore>
          <zeroOrMore>
             <optional>
@@ -2013,6 +2043,9 @@ TEI Edition Location: http://www.tei-c.org/Vault/P5//
             <ref name="model.desc.full"/>
          </zeroOrMore>
          <zeroOrMore>
+            <ref name="dsc"/>
+         </zeroOrMore>
+         <zeroOrMore>
             <optional>
                <ref name="thead"/>
             </optional>
@@ -2040,6 +2073,9 @@ TEI Edition Location: http://www.tei-c.org/Vault/P5//
          <ref name="did"/>
          <zeroOrMore>
             <ref name="model.desc.full"/>
+         </zeroOrMore>
+         <zeroOrMore>
+            <ref name="dsc"/>
          </zeroOrMore>
          <zeroOrMore>
             <optional>
@@ -2071,6 +2107,9 @@ TEI Edition Location: http://www.tei-c.org/Vault/P5//
             <ref name="model.desc.full"/>
          </zeroOrMore>
          <zeroOrMore>
+            <ref name="dsc"/>
+         </zeroOrMore>
+         <zeroOrMore>
             <optional>
                <ref name="thead"/>
             </optional>
@@ -2098,6 +2137,9 @@ TEI Edition Location: http://www.tei-c.org/Vault/P5//
          <ref name="did"/>
          <zeroOrMore>
             <ref name="model.desc.full"/>
+         </zeroOrMore>
+         <zeroOrMore>
+            <ref name="dsc"/>
          </zeroOrMore>
          <ref name="att.EADGlobal.attributes"/>
          <ref name="att.desc.c.attributes"/>
@@ -3027,6 +3069,7 @@ TEI Edition Location: http://www.tei-c.org/Vault/P5//
          </optional>
          <oneOrMore>
             <choice>
+               <ref name="model.blocks"/>
                <ref name="fileplan"/>
             </choice>
          </oneOrMore>

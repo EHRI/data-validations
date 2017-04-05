@@ -1,7 +1,19 @@
-EHRI_EAD.odd is the place where the EHRI_EAD schema in maintained.
+#EHRI EAD
 
-It is used to genreate a RelaxNG file with embedded schematron rules (EHRI_EAD.rng) and HTML documentation (EHRI_EAD.html)
+EHRI_EAD.odd is the place where the EHRI EAD schema in maintained.
 
-To generate these files, you can use the OxGarage conversion tool at http://www.tei-c.org/ege-webclient/, selecting the following parameters:
-* "Convert from" -> ODD document
-* "Convert to" -> RELAX NG schema AND xHTML (You have to run the conversion twice)
+It is used to generate:
+* a RelaxNG file with embedded schematron rules (EHRI_EAD.rng)
+* HTML documentation (EHRI_EAD_doc.html)
+
+
+To generate these files, simply run the script `convertODD.sh`
+
+
+To extract the schematron rules from the RelaxNG schema, run the following command:
+
+```
+saxon -s:EHRI_EAD.rng -xsl:XSL/ExtractSchFromRNG-2.xsl -o:EHRI_EAD.sch
+
+```
+
