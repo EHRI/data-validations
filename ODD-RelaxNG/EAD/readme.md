@@ -12,7 +12,7 @@ EHRI_EAD.odd is used to generate:
 
 These files need to be regenerated each time a change is made in EHRI_EAD.odd. To do so, simply run the script `convertODD.sh`
 
-__NB: You need (java1.6+)[https://www.java.com/en/download/], (saxon)[http://www.saxonica.com/saxon-c/index.xml#download] and (ant)[https://ant.apache.org/] installed on you machine.__
+__NB: You need [java1.6+](https://www.java.com/en/download/), [saxon](http://www.saxonica.com/saxon-c/index.xml#download) and [ant](https://ant.apache.org/) installed on you machine.__
 
 To extract the schematron rules from the RelaxNG schema, run the following command:
 
