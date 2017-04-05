@@ -1,4 +1,4 @@
-#EHRI EAD
+# EHRI EAD
 
 EHRI_EAD.odd is the place where the EHRI EAD schema in maintained.
 
