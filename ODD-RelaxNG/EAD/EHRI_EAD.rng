@@ -5,7 +5,7 @@
          xmlns:teix="http://www.tei-c.org/ns/Examples"
          datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes"
          ns="urn:isbn:1-931666-22-9"><!--
-Schema generated from ODD source 2017-04-05T14:53:49Z. .
+Schema generated from ODD source 2017-04-07T17:25:45Z. .
 TEI Edition: rev5
 TEI Edition Location: http://www.tei-c.org/Vault/P5//
   
@@ -106,6 +106,7 @@ TEI Edition Location: http://www.tei-c.org/Vault/P5//
       <optional>
          <attribute name="type">
             <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">characterizes the element in some sense, using any convenient classification scheme or typology.</a:documentation>
+            <text/>
          </attribute>
       </optional>
    </define>
@@ -139,7 +140,9 @@ TEI Edition Location: http://www.tei-c.org/Vault/P5//
       <optional>
          <attribute name="normal">
             <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">A consistent form, usually from a controlled vocabulary list to facilitate retrieval</a:documentation>
-            <data type="token"/>
+            <data type="token">
+               <param name="pattern">(\-?(0|1|2)([0-9]{3})(((01|02|03|04|05|06|07|08|09|10|11|12)((0[1-9])|((1|2)[0-9])|(3[0-1])))|\-((01|02|03|04|05|06|07|08|09|10|11|12)(\-((0[1-9])|((1|2)[0-9])|(3[0-1])))?))?)(/\-?(0|1|2)([0-9]{3})(((01|02|03|04|05|06|07|08|09|10|11|12)((0[1-9])|((1|2)[0-9])|(3[0-1])))|\-((01|02|03|04|05|06|07|08|09|10|11|12)(\-((0[1-9])|((1|2)[0-9])|(3[0-1])))?))?)?</param>
+            </data>
          </attribute>
       </optional>
    </define>
@@ -352,40 +355,40 @@ TEI Edition Location: http://www.tei-c.org/Vault/P5//
       </optional>
    </define>
    <define name="att.xlink.attributes">
-      <ref name="att.xlink.attribute.label"/>
-      <ref name="att.xlink.attribute.href"/>
-      <ref name="att.xlink.attribute.type"/>
-      <ref name="att.xlink.attribute.title"/>
-      <ref name="att.xlink.attribute.from"/>
-      <ref name="att.xlink.attribute.to"/>
-      <ref name="att.xlink.attribute.role"/>
-      <ref name="att.xlink.attribute.actuate"/>
-      <ref name="att.xlink.attribute.show"/>
-      <ref name="att.xlink.attribute.arcrole"/>
+      <ref name="att.xlink.attribute.xlinklabel"/>
+      <ref name="att.xlink.attribute.xlinkhref"/>
+      <ref name="att.xlink.attribute.xlinktype"/>
+      <ref name="att.xlink.attribute.xlinktitle"/>
+      <ref name="att.xlink.attribute.xlinkfrom"/>
+      <ref name="att.xlink.attribute.xlinkto"/>
+      <ref name="att.xlink.attribute.xlinkrole"/>
+      <ref name="att.xlink.attribute.xlinkactuate"/>
+      <ref name="att.xlink.attribute.xlinkshow"/>
+      <ref name="att.xlink.attribute.xlinkarcrole"/>
       <ref name="att.xlink.attribute.xpointer"/>
       <ref name="att.xlink.attribute.entityref"/>
       <ref name="att.xlink.attribute.target"/>
       <ref name="att.xlink.attribute.parent"/>
    </define>
-   <define name="att.xlink.attribute.label">
+   <define name="att.xlink.attribute.xlinklabel">
       <optional>
-         <attribute name="label" ns="http://www.w3.org/1999/xlink">
+         <attribute name="xlink:label" ns="http://www.w3.org/1999/xlink">
             <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">Labels the resource of locater element.</a:documentation>
-            <text/>
+            <data type="NMTOKEN"/>
          </attribute>
       </optional>
    </define>
-   <define name="att.xlink.attribute.href">
+   <define name="att.xlink.attribute.xlinkhref">
       <optional>
-         <attribute name="href" ns="http://www.w3.org/1999/xlink">
+         <attribute name="xlink:href" ns="http://www.w3.org/1999/xlink">
             <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">Supplies the data to find a remote resource.</a:documentation>
             <text/>
          </attribute>
       </optional>
    </define>
-   <define name="att.xlink.attribute.type">
+   <define name="att.xlink.attribute.xlinktype">
       <optional>
-         <attribute name="type" ns="http://www.w3.org/1999/xlink">
+         <attribute name="xlink:type" ns="http://www.w3.org/1999/xlink">
             <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">Indicates the XLink element type.</a:documentation>
             <choice>
                <value>simple</value>
@@ -404,41 +407,41 @@ TEI Edition Location: http://www.tei-c.org/Vault/P5//
          </attribute>
       </optional>
    </define>
-   <define name="att.xlink.attribute.title">
+   <define name="att.xlink.attribute.xlinktitle">
       <optional>
-         <attribute name="title" ns="http://www.w3.org/1999/xlink">
+         <attribute name="xlink:title" ns="http://www.w3.org/1999/xlink">
             <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">Allows a human-readable description.</a:documentation>
             <text/>
          </attribute>
       </optional>
    </define>
-   <define name="att.xlink.attribute.from">
+   <define name="att.xlink.attribute.xlinkfrom">
       <optional>
-         <attribute name="from" ns="http://www.w3.org/1999/xlink">
+         <attribute name="xlink:from" ns="http://www.w3.org/1999/xlink">
             <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">Identifies the origin resource of an arc.</a:documentation>
-            <text/>
+            <data type="NMTOKEN"/>
          </attribute>
       </optional>
    </define>
-   <define name="att.xlink.attribute.to">
+   <define name="att.xlink.attribute.xlinkto">
       <optional>
-         <attribute name="to" ns="http://www.w3.org/1999/xlink">
+         <attribute name="xlink:to" ns="http://www.w3.org/1999/xlink">
             <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">Identifies the destination resource of an arc.</a:documentation>
-            <text/>
+            <data type="NMTOKEN"/>
          </attribute>
       </optional>
    </define>
-   <define name="att.xlink.attribute.role">
+   <define name="att.xlink.attribute.xlinkrole">
       <optional>
-         <attribute name="role" ns="http://www.w3.org/1999/xlink">
+         <attribute name="xlink:role" ns="http://www.w3.org/1999/xlink">
             <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">Identifies the type of the related resource with an absolute URI.</a:documentation>
             <text/>
          </attribute>
       </optional>
    </define>
-   <define name="att.xlink.attribute.actuate">
+   <define name="att.xlink.attribute.xlinkactuate">
       <optional>
-         <attribute name="actuate" ns="http://www.w3c.org/1999/xlink">
+         <attribute name="xlink:actuate" ns="http://www.w3c.org/1999/xlink">
             <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">A control that defines whether a link occurs automatically or must be requested by the user. It is used in conjunction with the SHOW attribute to determine link behavior.</a:documentation>
             <choice>
                <value>onLoad</value>
@@ -453,9 +456,9 @@ TEI Edition Location: http://www.tei-c.org/Vault/P5//
          </attribute>
       </optional>
    </define>
-   <define name="att.xlink.attribute.show">
+   <define name="att.xlink.attribute.xlinkshow">
       <optional>
-         <attribute name="show" ns="http://www.w3c.org/1999/xlink">
+         <attribute name="xlink:show" ns="http://www.w3c.org/1999/xlink">
             <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">A control that defines whether a remote resource that is the target of a link appears at the point of the link, replaces the existing link, or appears in a new window. It is used in conjunction with the ACTUATE attribute to determine link behavior.</a:documentation>
             <choice>
                <value>new</value>
@@ -472,9 +475,9 @@ TEI Edition Location: http://www.tei-c.org/Vault/P5//
          </attribute>
       </optional>
    </define>
-   <define name="att.xlink.attribute.arcrole">
+   <define name="att.xlink.attribute.xlinkarcrole">
       <optional>
-         <attribute name="arcrole" ns="http://www.w3.org/1999/xlink">
+         <attribute name="xlink:arcrole" ns="http://www.w3.org/1999/xlink">
             <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">URI preference that identifies a resource that describes some property of an arc-type or simple-type linking element.</a:documentation>
             <data type="anyURI"/>
          </attribute>
@@ -530,8 +533,11 @@ TEI Edition Location: http://www.tei-c.org/Vault/P5//
    </define>
    <define name="att.era.attribute.era">
       <optional>
-         <attribute name="era">
-            <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
+         <attribute xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"
+                    name="era"
+                    a:defaultValue="ce">
+            <a:documentation/>
+            <data type="NMTOKEN"/>
          </attribute>
       </optional>
    </define>
@@ -593,7 +599,7 @@ TEI Edition Location: http://www.tei-c.org/Vault/P5//
       <optional>
          <attribute name="tpattern">
             <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
-            <text/>
+            <data type="NMTOKEN"/>
          </attribute>
       </optional>
    </define>
@@ -1398,7 +1404,29 @@ TEI Edition Location: http://www.tei-c.org/Vault/P5//
       <element name="arc">
          <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(Arc) Specifies the rules for traversal among the participating resources in an extended link. Arc uses the attributes to and from to define the traversal between named pairs of resources.</a:documentation>
          <empty/>
-         <ref name="att.xlink.attributes"/>
+         <ref name="att.EADGlobal.attributes"/>
+         <ref name="att.xlink.attribute.xlinklabel"/>
+         <ref name="att.xlink.attribute.xlinkhref"/>
+         <ref name="att.xlink.attribute.xlinktitle"/>
+         <ref name="att.xlink.attribute.xlinkfrom"/>
+         <ref name="att.xlink.attribute.xlinkto"/>
+         <ref name="att.xlink.attribute.xlinkrole"/>
+         <ref name="att.xlink.attribute.xlinkactuate"/>
+         <ref name="att.xlink.attribute.xlinkshow"/>
+         <ref name="att.xlink.attribute.xlinkarcrole"/>
+         <ref name="att.xlink.attribute.xpointer"/>
+         <ref name="att.xlink.attribute.entityref"/>
+         <ref name="att.xlink.attribute.target"/>
+         <ref name="att.xlink.attribute.parent"/>
+         <attribute xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"
+                    name="xlink:type"
+                    a:defaultValue="arc">
+            <a:documentation>Indicates the XLink element type.</a:documentation>
+            <choice>
+               <value>arc</value>
+               <a:documentation/>
+            </choice>
+         </attribute>
          <empty/>
       </element>
    </define>
@@ -1410,12 +1438,14 @@ TEI Edition Location: http://www.tei-c.org/Vault/P5//
                <ref name="runner"/>
             </zeroOrMore>
             <ref name="did"/>
-            <zeroOrMore>
-               <ref name="model.desc.full"/>
-            </zeroOrMore>
-            <zeroOrMore>
-               <ref name="dsc"/>
-            </zeroOrMore>
+            <interleave>
+               <zeroOrMore>
+                  <ref name="model.desc.full"/>
+               </zeroOrMore>
+               <zeroOrMore>
+                  <ref name="dsc"/>
+               </zeroOrMore>
+            </interleave>
          </group>
          <ns xmlns="http://purl.oclc.org/dsdl/schematron"
              prefix="ead"
@@ -1592,6 +1622,7 @@ TEI Edition Location: http://www.tei-c.org/Vault/P5//
          <optional>
             <attribute name="type">
                <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">can be used to categorize the finding aid as an inventory, register, or other format.</a:documentation>
+               <data type="NMTOKEN"/>
             </attribute>
          </optional>
          <empty/>
@@ -2230,7 +2261,7 @@ TEI Edition Location: http://www.tei-c.org/Vault/P5//
                <choice>
                   <value>1</value>
                   <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
-                  <value>O</value>
+                  <value>0</value>
                   <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
                </choice>
             </attribute>
@@ -2241,7 +2272,7 @@ TEI Edition Location: http://www.tei-c.org/Vault/P5//
                <choice>
                   <value>1</value>
                   <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
-                  <value>O</value>
+                  <value>0</value>
                   <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
                </choice>
             </attribute>
@@ -2284,12 +2315,17 @@ TEI Edition Location: http://www.tei-c.org/Vault/P5//
          <zeroOrMore>
             <choice>
                <text/>
-               <ref name="model.phrase.bare"/>
+               <ref name="model.phrase.basic"/>
             </choice>
          </zeroOrMore>
          <ref name="att.EADGlobal.attributes"/>
-         <ref name="att.typed.attributes"/>
          <ref name="att.labeled.attributes"/>
+         <optional>
+            <attribute name="type">
+               <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">characterizes the element in some sense, using any convenient classification scheme or typology.</a:documentation>
+               <data type="NMTOKEN"/>
+            </attribute>
+         </optional>
          <optional>
             <attribute name="parent">
                <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
@@ -2555,9 +2591,11 @@ TEI Edition Location: http://www.tei-c.org/Vault/P5//
       <element name="dimensions">
          <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(Dimensions) A subelement of physdesc for information about the size of the materials being described; usually includes numerical data. Measurements may be expressed in any convenient unit. Attributes may be used when the unit of measurement or type of dimension is not clear in the finding aid text. The UNIT attribute specifies the kind of measurement, for example, "inches" or "meters." The TYPE attribute specifies the kind of dimensions being measured, for example, "height" or "circumference." Multiple dimensions, for example, height-by-width, can be tagged in a single dimensions element or in separate dimensions with distinctive attribute values.</a:documentation>
          <zeroOrMore>
-            <text/>
-            <ref name="model.phrase.basic"/>
-            <ref name="dimensions"/>
+            <choice>
+               <text/>
+               <ref name="model.phrase.basic"/>
+               <ref name="dimensions"/>
+            </choice>
          </zeroOrMore>
          <ref name="att.EADGlobal.attributes"/>
          <ref name="att.labeled.attributes"/>
@@ -2652,6 +2690,22 @@ TEI Edition Location: http://www.tei-c.org/Vault/P5//
          <optional>
             <attribute name="type">
                <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">characterizes the element in some sense, using any convenient classification scheme or typology.</a:documentation>
+               <choice>
+                  <value>analyticover</value>
+                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
+                  <value>combined</value>
+                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
+                  <value>in-depth</value>
+                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
+                  <value>othertype</value>
+                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
+               </choice>
+            </attribute>
+         </optional>
+         <optional>
+            <attribute name="othertype">
+               <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
+               <data type="NMTOKEN"/>
             </attribute>
          </optional>
          <empty/>
@@ -2847,19 +2901,19 @@ TEI Edition Location: http://www.tei-c.org/Vault/P5//
          <optional>
             <attribute name="char">
                <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
-               <text/>
+               <data type="NMTOKEN"/>
             </attribute>
          </optional>
          <optional>
             <attribute name="charoff">
                <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
-               <text/>
+               <data type="NMTOKEN"/>
             </attribute>
          </optional>
          <optional>
             <attribute name="colname">
                <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
-               <text/>
+               <data type="NMTOKEN"/>
             </attribute>
          </optional>
          <optional>
@@ -2868,7 +2922,7 @@ TEI Edition Location: http://www.tei-c.org/Vault/P5//
                <choice>
                   <value>1</value>
                   <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
-                  <value>O</value>
+                  <value>0</value>
                   <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
                </choice>
             </attribute>
@@ -2876,19 +2930,19 @@ TEI Edition Location: http://www.tei-c.org/Vault/P5//
          <optional>
             <attribute name="morerows">
                <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
-               <text/>
+               <data type="NMTOKEN"/>
             </attribute>
          </optional>
          <optional>
             <attribute name="nameend">
                <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
-               <text/>
+               <data type="NMTOKEN"/>
             </attribute>
          </optional>
          <optional>
             <attribute name="namest">
                <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
-               <text/>
+               <data type="NMTOKEN"/>
             </attribute>
          </optional>
          <optional>
@@ -2897,7 +2951,7 @@ TEI Edition Location: http://www.tei-c.org/Vault/P5//
                <choice>
                   <value>1</value>
                   <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
-                  <value>O</value>
+                  <value>0</value>
                   <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
                </choice>
             </attribute>
@@ -2961,6 +3015,7 @@ TEI Edition Location: http://www.tei-c.org/Vault/P5//
          <zeroOrMore>
             <choice>
                <text/>
+               <ref name="model.phrase.basic"/>
             </choice>
          </zeroOrMore>
          <ref name="att.EADGlobal.attributes"/>
@@ -2999,6 +3054,7 @@ TEI Edition Location: http://www.tei-c.org/Vault/P5//
          <zeroOrMore>
             <choice>
                <text/>
+               <ref name="model.para.content.norefs"/>
                <ref name="bibref"/>
                <ref name="title"/>
                <ref name="archref"/>
@@ -3349,7 +3405,12 @@ TEI Edition Location: http://www.tei-c.org/Vault/P5//
             </choice>
          </zeroOrMore>
          <ref name="att.EADGlobal.attributes"/>
-         <ref name="att.typed.attributes"/>
+         <optional>
+            <attribute name="type">
+               <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">characterizes the element in some sense, using any convenient classification scheme or typology.</a:documentation>
+               <data type="NMTOKEN"/>
+            </attribute>
+         </optional>
          <empty/>
       </element>
    </define>
@@ -3387,6 +3448,50 @@ TEI Edition Location: http://www.tei-c.org/Vault/P5//
          <optional>
             <attribute name="type">
                <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">characterizes the element in some sense, using any convenient classification scheme or typology.</a:documentation>
+               <choice>
+                  <value>simple</value>
+                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
+                  <value>deflist</value>
+                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
+                  <value>marked</value>
+                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
+                  <value>ordered</value>
+                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
+               </choice>
+            </attribute>
+         </optional>
+         <optional>
+            <attribute name="numeration">
+               <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
+               <choice>
+                  <value>arabic</value>
+                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
+                  <value>upperalpha</value>
+                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
+                  <value>loweralpha</value>
+                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
+                  <value>upperroman</value>
+                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
+                  <value>lowerroman</value>
+                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
+               </choice>
+            </attribute>
+         </optional>
+         <optional>
+            <attribute name="continuation">
+               <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
+               <choice>
+                  <value>continues</value>
+                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
+                  <value>starts</value>
+                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
+               </choice>
+            </attribute>
+         </optional>
+         <optional>
+            <attribute name="mark">
+               <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
+               <text/>
             </attribute>
          </optional>
          <empty/>
@@ -3830,6 +3935,7 @@ TEI Edition Location: http://www.tei-c.org/Vault/P5//
          <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(Pointer Location) The location of a pointer ptr that is a resource in an extended link.</a:documentation>
          <empty/>
          <ref name="att.EADGlobal.attributes"/>
+         <ref name="att.xlink.attributes"/>
          <empty/>
       </element>
    </define>
@@ -3883,7 +3989,36 @@ TEI Edition Location: http://www.tei-c.org/Vault/P5//
             </choice>
          </zeroOrMore>
          <ref name="att.EADGlobal.attributes"/>
-         <ref name="att.xlink.attributes"/>
+         <ref name="att.xlink.attribute.xlinklabel"/>
+         <ref name="att.xlink.attribute.xlinkhref"/>
+         <ref name="att.xlink.attribute.xlinktitle"/>
+         <ref name="att.xlink.attribute.xlinkfrom"/>
+         <ref name="att.xlink.attribute.xlinkto"/>
+         <ref name="att.xlink.attribute.xlinkrole"/>
+         <ref name="att.xlink.attribute.xlinkactuate"/>
+         <ref name="att.xlink.attribute.xlinkshow"/>
+         <ref name="att.xlink.attribute.xlinkarcrole"/>
+         <ref name="att.xlink.attribute.xpointer"/>
+         <ref name="att.xlink.attribute.entityref"/>
+         <ref name="att.xlink.attribute.target"/>
+         <ref name="att.xlink.attribute.parent"/>
+         <attribute name="xlink:type">
+            <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">Indicates the XLink element type.</a:documentation>
+            <choice>
+               <value>simple</value>
+               <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">Creates a simple link.</a:documentation>
+               <value>extended</value>
+               <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">Creates an extended link.</a:documentation>
+               <value>locator</value>
+               <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">Creates a locater link that points to a resource.</a:documentation>
+               <value>arc</value>
+               <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">Creates an arc with multiple resources and various traversal paths.</a:documentation>
+               <value>resource</value>
+               <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">Creates a resource link, which indicates a specific resource.</a:documentation>
+               <value>title</value>
+               <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">Creates a title link. Such elements are useful for internationalization purposes.</a:documentation>
+            </choice>
+         </attribute>
          <empty/>
       </element>
    </define>
@@ -3898,6 +4033,7 @@ TEI Edition Location: http://www.tei-c.org/Vault/P5//
          </zeroOrMore>
          <ref name="att.EADGlobal.attributes"/>
          <ref name="att.roled.attributes"/>
+         <ref name="att.xlink.attributes"/>
          <empty/>
       </element>
    </define>
@@ -4327,6 +4463,7 @@ TEI Edition Location: http://www.tei-c.org/Vault/P5//
          <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(Title Page) A wrapper element within frontmatter that groups bibliographic information about an encoded finding aid, including its name, author, and other aspects of its creation and publication. It contains much of the same information found in the filedesc portion of the eadheader, such as the titleproper, subtitle, author, sponsor, publisher, and date of the finding aid. Although it is possible to generate an electronic or printed title page directly from the eadheader, use of the titlepage may be more accommodating of local preferences, including displays of photographic illustrations, institutional logos, or other graphic images.</a:documentation>
          <oneOrMore>
             <choice>
+               <ref name="model.blocks"/>
                <ref name="author"/>
                <ref name="date"/>
                <ref name="edition"/>
@@ -4445,6 +4582,12 @@ TEI Edition Location: http://www.tei-c.org/Vault/P5//
          <optional>
             <attribute name="type">
                <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">characterizes the element in some sense, using any convenient classification scheme or typology.</a:documentation>
+               <choice>
+                  <value>bulk</value>
+                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
+                  <value>inclusive</value>
+                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
+               </choice>
             </attribute>
          </optional>
          <optional>
@@ -4506,12 +4649,7 @@ TEI Edition Location: http://www.tei-c.org/Vault/P5//
          <optional>
             <attribute name="identifier">
                <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">A machine-readable unique identifier.</a:documentation>
-               <zeroOrMore>
-                  <choice>
-                     <text/>
-                     <ref name="model.phrase.bare"/>
-                  </choice>
-               </zeroOrMore>
+               <text/>
             </attribute>
          </optional>
          <empty/>
