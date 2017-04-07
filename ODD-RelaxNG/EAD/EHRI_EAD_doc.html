@@ -176,7 +176,7 @@ element addressline { <a class="link_ref" href="#EAD.att.EADGlobal" title="att.E
      Video tape is located in Video Storage.<span class="element">&lt;/p&gt;</span>
  <span class="element">&lt;/altformavail&gt;</span>
 <span class="element">&lt;/c02&gt;</span></div></td></tr><tr><td class="wovenodd-col1"><span lang="en" class="label">Schematron</span></td><td class="wovenodd-col2"><span>If the element <a class="link_ref" href="#EAD.altformavail" title="&lt;altformavail&gt;">&lt;altformavail&gt;</a> is not empty, you COULD try to identify if the originals are present in the EHRI portal and make a link between the two descriptions.</span><div class="pre">
-&lt;s:rule context="ead:altformavail/ead:p"&gt;
+&lt;s:rule context="ead:altformavail"&gt;
 &lt;s:assert role="COULD"
  test="not(normalize-space(.))"&gt; If the element altformavail is not empty, you
  COULD try to identify if the originals are present in the EHRI portal and make a
@@ -310,16 +310,16 @@ element arc
 &lt;/s:rule&gt;</div></td></tr><tr><td class="wovenodd-col1"><span lang="en" class="label">Schematron</span></td><td class="wovenodd-col2"><span><a class="link_ref" href="#EAD.archdesc" title="&lt;archdesc&gt;">&lt;archdesc&gt;</a>should contain a non-empty <a class="link_ref" href="#EAD.origination" title="&lt;origination&gt;">&lt;origination&gt;</a> element.</span><div class="pre">
 &lt;s:rule context="ead:archdesc"&gt;
 &lt;s:assert role="SHOULD"
- test="ead:did/ead:origination and normalize-space(ead:did/ead:origination)"&gt;archdesc SHOULD have a non-empty origination&lt;/s:assert&gt;
+ test="every $x in ead:did/ead:origination satisfies normalize-space($x)"&gt;archdesc SHOULD have a non-empty origination&lt;/s:assert&gt;
 &lt;/s:rule&gt;</div></td></tr><tr><td class="wovenodd-col1"><span lang="en" class="label">Schematron</span></td><td class="wovenodd-col2"><span>If <a class="link_ref" href="#EAD.archdesc" title="&lt;archdesc&gt;">&lt;archdesc&gt;</a> should contain a non-empty <a class="link_ref" href="#EAD.processinfo" title="&lt;processinfo&gt;">&lt;processinfo&gt;</a> element.</span><div class="pre">
 &lt;s:rule context="ead:archdesc"&gt;
 &lt;s:assert role="SHOULD"
- test="normalize-space(ead:processinfo)"&gt;archdesc-processinfo SHOULD not be
+ test="every $x in ead:processinfo satisfies normalize-space($x)"&gt;archdesc-processinfo SHOULD not be
  empty&lt;/s:assert&gt;
 &lt;/s:rule&gt;</div></td></tr><tr><td class="wovenodd-col1"><span lang="en" class="label">Schematron</span></td><td class="wovenodd-col2"><span>The <a class="link_ref" href="#EAD.processinfo" title="&lt;processinfo&gt;">&lt;processinfo&gt;</a> element SHOULD contain a <a class="link_ref" href="#EAD.date" title="&lt;date&gt;">&lt;date&gt;</a> element as descendant.</span><div class="pre">
 &lt;s:rule context="ead:archdesc"&gt;
 &lt;s:assert role="SHOULD"
- test="normalize-space(ead:processinfo/ead:p/ead:date)"&gt;archdesc-processinfo
+ test="every $x in ead:processinfo/ead:p/ead:date satisfies normalize-space($x)"&gt;archdesc-processinfo
  SHOULD have a non empty date&lt;/s:assert&gt;
 &lt;/s:rule&gt;</div></td></tr><tr><td class="wovenodd-col1"><span lang="en" class="label">Schematron</span></td><td class="wovenodd-col2"><span>The <a class="link_ref" href="#EAD.archdesc" title="&lt;archdesc&gt;">&lt;archdesc&gt;</a> element COULD contain a <a class="link_ref" href="#EAD.langmaterial" title="&lt;langmaterial&gt;">&lt;langmaterial&gt;</a> element.</span><div class="pre">
 &lt;s:rule context="ead:archdesc"&gt;
@@ -1077,7 +1077,7 @@ element c12
 &lt;/s:rule&gt;</div></td></tr><tr><td class="wovenodd-col1"><span lang="en" class="label">Schematron</span></td><td class="wovenodd-col2"><span>The <a class="link_ref" href="#EAD.date" title="&lt;date&gt;">&lt;date&gt;</a> element for each <a class="link_ref" href="#EAD.change" title="&lt;change&gt;">&lt;change&gt;</a> in <a class="link_ref" href="#EAD.revisiondesc" title="&lt;revisiondesc&gt;">&lt;revisiondesc&gt;</a> SHOULD not be empty</span><div class="pre">
 &lt;s:rule context="ead:change"&gt;
 &lt;s:assert role="SHOULD"
- test="normalize-space(ead:date)"&gt;a revisiondesc/change SHOULD have a not empty
+ test="every $x in ead:date satisfies normalize-space($x)"&gt;a revisiondesc/change SHOULD have a not empty
  date&lt;/s:assert&gt;
 &lt;/s:rule&gt;</div></td></tr><tr><td class="wovenodd-col1"><span lang="en" class="label">Content model</span></td><td class="wovenodd-col2"><pre class="pre_eg cdata">
 &lt;content/&gt;
@@ -1962,7 +1962,7 @@ element ead
 &lt;/s:rule&gt;</div></td></tr><tr><td class="wovenodd-col1"><span lang="en" class="label">Schematron</span></td><td class="wovenodd-col2"><span>A date of creation for the finding aid is welcome. The relevant element in <a class="link_ref" href="#EAD.date" title="&lt;date&gt;">&lt;date&gt;</a>, child of <a class="link_ref" href="#EAD.creation" title="&lt;creation&gt;">&lt;creation&gt;</a></span><div class="pre">
 &lt;s:rule context="ead:eadheader"&gt;
 &lt;s:assert role="COULD"
- test="ead:creation/ead:date and normalize-space(ead:creation/ead:date)"&gt;eadheader COULD have a non-empty creation-date&lt;/s:assert&gt;
+ test="every $x in ead:creation/ead:date satisfies normalize-space($x)"&gt;eadheader COULD have a non-empty creation-date&lt;/s:assert&gt;
 &lt;/s:rule&gt;</div></td></tr><tr><td class="wovenodd-col1"><span lang="en" class="label">Content model</span></td><td class="wovenodd-col2"><pre class="pre_eg cdata">
 &lt;content/&gt;
     </pre></td></tr><tr><td class="wovenodd-col1"><span lang="en" class="label">Schema Declaration</span></td><td class="wovenodd-col2"><pre class="pre_eg">
@@ -3100,7 +3100,7 @@ element odd
      family, Lunenburg, Nova Scotia.<span class="element">&lt;/p&gt;</span>
  <span class="element">&lt;/originalsloc&gt;</span>
 <span class="element">&lt;/c03&gt;</span></div></td></tr><tr><td class="wovenodd-col1"><span lang="en" class="label">Schematron</span></td><td class="wovenodd-col2"><span>If the element <a class="link_ref" href="#EAD.originalsloc" title="&lt;originalsloc&gt;">&lt;originalsloc&gt;</a> is not empty, you COULD try to identify if copies are present in the EHRI portal and make a link between the two descriptions.</span><div class="pre">
-&lt;s:rule context="ead:originalsloc/ead:p"&gt;
+&lt;s:rule context="ead:originalsloc"&gt;
 &lt;s:assert role="COULD"
  test="not(normalize-space(.))"&gt;If the element originalsloc is not empty, you
  COULD try to identify if copies are present in the EHRI portal and make a link
@@ -3263,7 +3263,7 @@ element persname
 <span class="element">&lt;/c&gt;</span></div></td></tr><tr><td class="wovenodd-col1"><span lang="en" class="label">Schematron</span></td><td class="wovenodd-col2"><span>In the <a class="link_ref" href="#EAD.did" title="&lt;did&gt;">&lt;did&gt;</a> element, <a class="link_ref" href="#EAD.physdesc" title="&lt;physdesc&gt;">&lt;physdesc&gt;</a> SHOULD come with a non-empty <a class="link_ref" href="#EAD.extent" title="&lt;extent&gt;">&lt;extent&gt;</a></span><div class="pre">
 &lt;s:rule context="ead:physdesc"&gt;
 &lt;s:assert role="SHOULD"
- test="normalize-space(ead:extent[1])"&gt;a did SHOULD have a non-empty
+ test="every $x in ead:extent satisfies normalize-space($x)"&gt;a did SHOULD have a non-empty
  physdesc-extent, according to 17.3&lt;/s:assert&gt;
 &lt;/s:rule&gt;</div></td></tr><tr><td class="wovenodd-col1"><span lang="en" class="label">Content model</span></td><td class="wovenodd-col2"><pre class="pre_eg cdata">
 &lt;content/&gt;
@@ -3423,7 +3423,7 @@ element processinfo
 &lt;/s:rule&gt;</div></td></tr><tr><td class="wovenodd-col1"><span lang="en" class="label">Schematron</span></td><td class="wovenodd-col2"><span><a class="link_ref" href="#EAD.descrules" title="&lt;descrules&gt;">&lt;descrules&gt;</a> has a default value added automatically by EHRI. Therefore, the content of <a class="link_ref" href="#EAD.descrules" title="&lt;descrules&gt;">&lt;descrules&gt;</a> will be overwritten</span><div class="pre">
 &lt;s:rule context="ead:profiledesc"
  role="SHOULD"&gt;
-&lt;s:assert test="not(normalize-space(ead:descrules))"&gt;descrules has a default value added
+&lt;s:assert test="not(every $x in ead:descrules satisfies normalize-space($x))"&gt;descrules has a default value added
  automatically by EHRI. Therefore, the content of descrules will be
  overwritten&lt;/s:assert&gt;
 &lt;/s:rule&gt;</div></td></tr><tr><td class="wovenodd-col1"><span lang="en" class="label">Content model</span></td><td class="wovenodd-col2"><pre class="pre_eg cdata">
@@ -4531,6 +4531,6 @@ element userestrict
 	  Generated from index.xml using XSLT stylesheets version 7.42.0
 
 	       based on http://www.tei-c.org/Stylesheets/
-	       on 2017-04-07T17:25:55Z.
+	       on 2017-04-07T18:36:44Z.
 	       SAXON HE 9.6.0.7.
 		 --></address></div></body></html>

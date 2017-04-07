@@ -5,7 +5,7 @@
          xmlns:teix="http://www.tei-c.org/ns/Examples"
          datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes"
          ns="urn:isbn:1-931666-22-9"><!--
-Schema generated from ODD source 2017-04-07T17:25:45Z. .
+Schema generated from ODD source 2017-04-07T18:36:32Z. .
 TEI Edition: rev5
 TEI Edition Location: http://www.tei-c.org/Vault/P5//
   
@@ -1372,8 +1372,7 @@ TEI Edition Location: http://www.tei-c.org/Vault/P5//
          </oneOrMore>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
                   id="EHRI_EAD-altformavail-copyLinking-constraint-9">
-            <rule xmlns:rng="http://relaxng.org/ns/structure/1.0"
-                  context="ead:altformavail/ead:p">
+            <rule xmlns:rng="http://relaxng.org/ns/structure/1.0" context="ead:altformavail">
                   <assert role="COULD" test="not(normalize-space(.))"> If the element altformavail is not empty, you
                     COULD try to identify if the originals are present in the EHRI portal and make a
                     link between the two descriptions</assert>
@@ -1471,20 +1470,22 @@ TEI Edition Location: http://www.tei-c.org/Vault/P5//
                   id="EHRI_EAD-archdesc-orignationDesirable-constraint-12">
             <rule xmlns:rng="http://relaxng.org/ns/structure/1.0" context="ead:archdesc">
                <assert role="SHOULD"
-                       test="ead:did/ead:origination and normalize-space(ead:did/ead:origination)">archdesc SHOULD have a non-empty origination</assert>
+                       test="every $x in ead:did/ead:origination satisfies normalize-space($x)">archdesc SHOULD have a non-empty origination</assert>
             </rule>
          </pattern>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
                   id="EHRI_EAD-archdesc-archdescProcessinfoDesirable-constraint-13">
             <rule xmlns:rng="http://relaxng.org/ns/structure/1.0" context="ead:archdesc">
-                  <assert role="SHOULD" test="normalize-space(ead:processinfo)">archdesc-processinfo SHOULD not be
+                  <assert role="SHOULD"
+                       test="every $x in ead:processinfo satisfies normalize-space($x)">archdesc-processinfo SHOULD not be
                     empty</assert>
             </rule>
          </pattern>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
                   id="EHRI_EAD-archdesc-archdescProcessinfoDateDesirable-constraint-14">
             <rule xmlns:rng="http://relaxng.org/ns/structure/1.0" context="ead:archdesc">
-               <assert role="SHOULD" test="normalize-space(ead:processinfo/ead:p/ead:date)">archdesc-processinfo
+               <assert role="SHOULD"
+                       test="every $x in ead:processinfo/ead:p/ead:date satisfies normalize-space($x)">archdesc-processinfo
                     SHOULD have a non empty date</assert>
             </rule>
          </pattern>
@@ -2196,7 +2197,7 @@ TEI Edition Location: http://www.tei-c.org/Vault/P5//
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
                   id="EHRI_EAD-change-dateNotEmpty-constraint-43">
             <rule xmlns:rng="http://relaxng.org/ns/structure/1.0" context="ead:change">
-               <assert role="SHOULD" test="normalize-space(ead:date)">a revisiondesc/change SHOULD have a not empty
+               <assert role="SHOULD" test="every $x in ead:date satisfies normalize-space($x)">a revisiondesc/change SHOULD have a not empty
                     date</assert>
             </rule>
          </pattern>
@@ -2759,7 +2760,7 @@ TEI Edition Location: http://www.tei-c.org/Vault/P5//
                   id="EHRI_EAD-eadheader-creationDateNotempty-constraint-58">
             <rule xmlns:rng="http://relaxng.org/ns/structure/1.0" context="ead:eadheader">
                <assert role="COULD"
-                       test="ead:creation/ead:date and normalize-space(ead:creation/ead:date)">eadheader COULD have a non-empty creation-date</assert>
+                       test="every $x in ead:creation/ead:date satisfies normalize-space($x)">eadheader COULD have a non-empty creation-date</assert>
             </rule>
          </pattern>
          <ref name="att.EADGlobal.attributes"/>
@@ -3660,8 +3661,7 @@ TEI Edition Location: http://www.tei-c.org/Vault/P5//
          </oneOrMore>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
                   id="EHRI_EAD-originalsloc-originalsLinking-constraint-64">
-            <rule xmlns:rng="http://relaxng.org/ns/structure/1.0"
-                  context="ead:originalsloc/ead:p">
+            <rule xmlns:rng="http://relaxng.org/ns/structure/1.0" context="ead:originalsloc">
                   <assert role="COULD" test="not(normalize-space(.))">If the element originalsloc is not empty, you
                     COULD try to identify if copies are present in the EHRI portal and make a link
                     between the two descriptions.</assert>
@@ -3760,7 +3760,8 @@ TEI Edition Location: http://www.tei-c.org/Vault/P5//
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
                   id="EHRI_EAD-physdesc-nonemptyPhysdescDesirable-constraint-66">
             <rule xmlns:rng="http://relaxng.org/ns/structure/1.0" context="ead:physdesc">
-               <assert role="SHOULD" test="normalize-space(ead:extent[1])">a did SHOULD have a non-empty
+               <assert role="SHOULD"
+                       test="every $x in ead:extent satisfies normalize-space($x)">a did SHOULD have a non-empty
                     physdesc-extent, according to 17.3</assert>
             </rule>
          </pattern>
@@ -3899,7 +3900,7 @@ TEI Edition Location: http://www.tei-c.org/Vault/P5//
             <rule xmlns:rng="http://relaxng.org/ns/structure/1.0"
                   context="ead:profiledesc"
                   role="SHOULD">
-                  <assert test="not(normalize-space(ead:descrules))">descrules has a default value added
+                  <assert test="not(every $x in ead:descrules satisfies normalize-space($x))">descrules has a default value added
                     automatically by EHRI. Therefore, the content of descrules will be
                     overwritten</assert>
                 </rule>

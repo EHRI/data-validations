@@ -62,7 +62,7 @@
                 the originals are present in the EHRI portal and make a link between the two
                 descriptions.</desc>
               <constraint>
-                <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="ead:altformavail/ead:p">
+                <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="ead:altformavail">
                   <assert xmlns="http://purl.oclc.org/dsdl/schematron" role="COULD"
                     test="not(normalize-space(.))"> If the element altformavail is not empty, you
                     COULD try to identify if the originals are present in the EHRI portal and make a
@@ -120,7 +120,7 @@
               <constraint>
                 <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="ead:archdesc"><assert
                     xmlns="http://purl.oclc.org/dsdl/schematron" role="SHOULD"
-                    test="ead:did/ead:origination and normalize-space(ead:did/ead:origination)"
+                    test="every $x in ead:did/ead:origination satisfies normalize-space($x)"
                     >archdesc SHOULD have a non-empty origination</assert></rule>
               </constraint>
             </constraintSpec>
@@ -130,7 +130,7 @@
               <constraint>
                 <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="ead:archdesc">
                   <assert xmlns="http://purl.oclc.org/dsdl/schematron" role="SHOULD"
-                    test="normalize-space(ead:processinfo)">archdesc-processinfo SHOULD not be
+                    test="every $x in ead:processinfo satisfies normalize-space($x)">archdesc-processinfo SHOULD not be
                     empty</assert></rule>
               </constraint>
             </constraintSpec>
@@ -141,7 +141,7 @@
               <constraint>
                 <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="ead:archdesc"><assert
                     xmlns="http://purl.oclc.org/dsdl/schematron" role="SHOULD"
-                    test="normalize-space(ead:processinfo/ead:p/ead:date)">archdesc-processinfo
+                    test="every $x in ead:processinfo/ead:p/ead:date satisfies normalize-space($x)">archdesc-processinfo
                     SHOULD have a non empty date</assert></rule>
               </constraint>
             </constraintSpec>
@@ -394,7 +394,7 @@
               <constraint>
                 <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="ead:change"><assert
                     xmlns="http://purl.oclc.org/dsdl/schematron" role="SHOULD"
-                    test="normalize-space(ead:date)">a revisiondesc/change SHOULD have a not empty
+                    test="every $x in ead:date satisfies normalize-space($x)">a revisiondesc/change SHOULD have a not empty
                     date</assert></rule>
               </constraint>
             </constraintSpec>
@@ -562,7 +562,7 @@
               <constraint>
                 <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="ead:eadheader"><assert
                     xmlns="http://purl.oclc.org/dsdl/schematron" role="COULD"
-                    test="ead:creation/ead:date and normalize-space(ead:creation/ead:date)"
+                    test="every $x in ead:creation/ead:date satisfies normalize-space($x)"
                     >eadheader COULD have a non-empty creation-date</assert></rule>
               </constraint>
             </constraintSpec>
@@ -628,7 +628,7 @@
                 copies are present in the EHRI portal and make a link between the two
                 descriptions.</desc>
               <constraint>
-                <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="ead:originalsloc/ead:p">
+                <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="ead:originalsloc">
                   <assert xmlns="http://purl.oclc.org/dsdl/schematron" role="COULD"
                     test="not(normalize-space(.))">If the element originalsloc is not empty, you
                     COULD try to identify if copies are present in the EHRI portal and make a link
@@ -665,7 +665,7 @@
               <constraint>
                 <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="ead:physdesc"><assert
                     xmlns="http://purl.oclc.org/dsdl/schematron" role="SHOULD"
-                    test="normalize-space(ead:extent[1])">a did SHOULD have a non-empty
+                    test="every $x in ead:extent satisfies normalize-space($x)">a did SHOULD have a non-empty
                     physdesc-extent, according to 17.3</assert></rule>
               </constraint>
             </constraintSpec>
@@ -698,7 +698,7 @@
                 <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="ead:profiledesc"
                   role="SHOULD">
                   <assert xmlns="http://purl.oclc.org/dsdl/schematron"
-                    test="not(normalize-space(ead:descrules))">descrules has a default value added
+                    test="not(every $x in ead:descrules satisfies normalize-space($x))">descrules has a default value added
                     automatically by EHRI. Therefore, the content of descrules will be
                     overwritten</assert>
                 </rule>
