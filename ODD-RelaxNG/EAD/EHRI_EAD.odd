@@ -968,7 +968,7 @@
             </attList>
           </classSpec>
           <!-- attribute langcode -->
-          <classSpec ident="att.langcode" type="atts" module="EAD" mode="replace">
+<!--          <classSpec ident="att.langcode" type="atts" module="EAD" mode="change">
             <attList>
               <attDef ident="langcode" usage="opt">
                 <desc>The three-lettter code for the language in which an abstract is written
@@ -1004,11 +1004,11 @@
                 </remarks>
               </attDef>
             </attList>
-          </classSpec>
+          </classSpec>-->
           <!-- attribute scriptcode -->
+<!--
 
-
-          <classSpec ident="att.scriptcode" type="atts" module="EAD" mode="replace">
+          <classSpec ident="att.scriptcode" type="atts" module="EAD" mode="change">
             <attList>
               <attDef ident="scriptcode">
                 <desc>The four-letter code for the writing script used with a given language.</desc>
@@ -1042,9 +1042,9 @@
               </attDef>
             </attList>
           </classSpec>
-
-
-          <classSpec ident="att.coded" type="atts" module="EAD" mode="replace">
+-->
+<!--
+          <classSpec ident="att.coded" type="atts" module="EAD" mode="change">
             <desc>Groups together various attribute used to provide additional codes on
               elements</desc>
             <attList>
@@ -1080,7 +1080,7 @@
                 </remarks>
               </attDef>
             </attList>
-          </classSpec>
+          </classSpec>-->
         </schemaSpec>
       </div>
     </body>
