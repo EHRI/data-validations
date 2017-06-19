@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE TEI [
+  <!ENTITY path "https://cdn.rawgit.com/EHRI/data-validations/92c8e39f/ODD-RelaxNG/EAD/EHRI_EAD_doc.html">
+]>
 <?xml-model href="tei_odds.rnc" type="application/relax-ng-compact-syntax"?>
+
 <TEI xmlns="http://www.tei-c.org/ns/1.0" xmlns:rng="http://relaxng.org/ns/structure/1.0"
   xml:lang="en">
   <teiHeader>
@@ -61,7 +65,7 @@
                 the originals are present in the EHRI portal and make a link between the two
                 descriptions.</desc>
               <constraint>
-                <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="ead:altformavail">
+                <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="ead:altformavail" see="&path;#EAD.altformavail">
                   <assert xmlns="http://purl.oclc.org/dsdl/schematron" role="COULD"
                     test="not(normalize-space(.))"> If the element altformavail is not empty, you
                     COULD try to identify if the originals are present in the EHRI portal and make a
@@ -74,7 +78,7 @@
             <!-- Technical requirement : Declare the ead namespace as a first constraint  -->
             <constraintSpec ident="EHRINamespace" scheme="isoschematron" mode="add">
               <desc> This constraint exists only for technical reasons. Without the declaration of
-                the EAD namespace, the transformation in relaxNG wouldn't work. </desc>
+                the EAD namespace, the transformation in relaxNG wouldn't work.</desc>
               <constraint>
                 <ns xmlns="http://purl.oclc.org/dsdl/schematron" prefix="ead"
                   uri="urn:isbn:1-931666-22-9"/>
@@ -91,7 +95,7 @@
             <constraintSpec ident="levelRequired" scheme="isoschematron" type="EHRI">
               <desc><gi>archdesc</gi> MUST have a <att>level</att> attribute.</desc>
               <constraint>
-                <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="ead:archdesc">
+                <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="ead:archdesc" see="&path;#EAD.archdesc">
                   <assert xmlns="http://purl.oclc.org/dsdl/schematron" role="MUST" test="@level"
                     >archdesc MUST have a level-attribute</assert>
                 </rule>
@@ -107,7 +111,7 @@
                 </list>
               </desc>
               <constraint>
-                <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="ead:archdesc">
+                <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="ead:archdesc" see="&path;#EAD.archdesc">
                   <assert xmlns="http://purl.oclc.org/dsdl/schematron" role="COULD"
                     test="@level = 'fonds' or @level = 'recordGrp' or @level = 'collection' or @level='otherlevel'"
                     >The value of the archdesc level attribute SHOULD be 'fonds', 'recordGrp',
@@ -117,7 +121,7 @@
             <constraintSpec ident="orignationDesirable" scheme="isoschematron" type="EHRI">
               <desc><gi>archdesc</gi>should contain a non-empty <gi>origination</gi> element.</desc>
               <constraint>
-                <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="ead:archdesc"><assert
+                <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="ead:archdesc" see="&path;#EAD.archdesc"><assert
                     xmlns="http://purl.oclc.org/dsdl/schematron" role="SHOULD"
                     test="every $x in ead:did/ead:origination satisfies normalize-space($x)"
                     >archdesc SHOULD have a non-empty origination</assert></rule>
@@ -127,7 +131,7 @@
               <desc>If <gi>archdesc</gi> should contain a non-empty <gi>processinfo</gi>
                 element.</desc>
               <constraint>
-                <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="ead:archdesc">
+                <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="ead:archdesc" see="&path;#EAD.archdesc">
                   <assert xmlns="http://purl.oclc.org/dsdl/schematron" role="SHOULD"
                     test="every $x in ead:processinfo satisfies normalize-space($x)">archdesc-processinfo SHOULD not be
                     empty</assert></rule>
@@ -138,7 +142,7 @@
               <desc>The <gi>processinfo</gi> element SHOULD contain a <gi>date</gi> element as
                 descendant.</desc>
               <constraint>
-                <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="ead:archdesc"><assert
+                <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="ead:archdesc" see="&path;#EAD.archdesc"><assert
                     xmlns="http://purl.oclc.org/dsdl/schematron" role="SHOULD"
                     test="every $x in ead:processinfo/ead:p/ead:date satisfies normalize-space($x)">archdesc-processinfo
                     SHOULD have a non empty date</assert></rule>
@@ -148,7 +152,7 @@
               <desc>The <gi>archdesc</gi> element COULD contain a <gi>langmaterial</gi>
                 element.</desc>
               <constraint>
-                <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="ead:archdesc"><assert
+                <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="ead:archdesc" see="&path;#EAD.archdesc"><assert
                     xmlns="http://purl.oclc.org/dsdl/schematron" role="COULD"
                     test="ead:did/ead:langmaterial">archdesc COULD have a
                   langmaterial</assert></rule>
@@ -158,7 +162,7 @@
               <desc><desc>The <gi>archdesc</gi> element COULD contain a <gi>custodhist</gi>
                   element.</desc></desc>
               <constraint>
-                <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="ead:archdesc">
+                <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="ead:archdesc" see="&path;#EAD.archdesc">
                   <assert xmlns="http://purl.oclc.org/dsdl/schematron" role="COULD"
                     test="ead:custodhist">archdesc COULD have a custodhist</assert>
                 </rule>
@@ -168,7 +172,7 @@
               <desc><desc>The <gi>archdesc</gi> element COULD contain a <gi>otherfindaid</gi>
                   element.</desc></desc>
               <constraint>
-                <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="ead:archdesc"><assert
+                <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="ead:archdesc" see="&path;#EAD.archdesc"><assert
                     xmlns="http://purl.oclc.org/dsdl/schematron" role="COULD"
                     test="ead:otherfindaid">archdesc COULD have an otherfindaid</assert></rule>
               </constraint>
@@ -177,7 +181,7 @@
               <desc>The <gi>archdesc</gi> element COULD contain a <gi>originalsloc</gi>
                 element.</desc>
               <constraint>
-                <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="ead:archdesc"><assert
+                <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="ead:archdesc" see="&path;#EAD.archdesc"><assert
                     xmlns="http://purl.oclc.org/dsdl/schematron" role="COULD"
                     test="ead:originalsloc">archdesc COULD have an originalsloc</assert></rule>
               </constraint>
@@ -186,7 +190,7 @@
               <desc>The <gi>archdesc</gi> element COULD contain a <gi>altformavail</gi>
                 element.</desc>
               <constraint>
-                <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="ead:archdesc"><assert
+                <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="ead:archdesc" see="&path;#EAD.archdesc"><assert
                     xmlns="http://purl.oclc.org/dsdl/schematron" role="COULD"
                     test="ead:altformavail">archdesc COULD have an altformavail</assert></rule>
               </constraint>
@@ -195,7 +199,7 @@
               <desc>The <gi>archdesc</gi> element COULD contain a <gi>bibliography</gi>
                 element.</desc>
               <constraint>
-                <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="ead:archdesc"><assert
+                <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="ead:archdesc" see="&path;#EAD.archdesc"><assert
                     xmlns="http://purl.oclc.org/dsdl/schematron" role="COULD"
                     test="ead:bibliography">archdesc COULD have a bibliography</assert></rule>
               </constraint>
@@ -203,7 +207,7 @@
             <constraintSpec ident="oddPossible" scheme="isoschematron" type="EHRI">
               <desc>The <gi>archdesc</gi> element COULD contain a <gi>odd</gi> element</desc>
               <constraint>
-                <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="ead:archdesc"><assert
+                <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="ead:archdesc" see="&path;#EAD.archdesc"><assert
                     xmlns="http://purl.oclc.org/dsdl/schematron" role="COULD" test="ead:odd"
                     >archdesc COULD have an odd</assert></rule>
               </constraint>
@@ -211,7 +215,7 @@
             <constraintSpec ident="notePossible" scheme="isoschematron" type="EHRI">
               <desc>The <gi>archdesc</gi> element COULD contain a <gi>note</gi> element.</desc>
               <constraint>
-                <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="ead:archdesc"><assert
+                <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="ead:archdesc" see="&path;#EAD.archdesc"><assert
                     xmlns="http://purl.oclc.org/dsdl/schematron" role="COULD" test="ead:note"
                     >archdesc COULD have a note</assert></rule>
               </constraint>
@@ -220,7 +224,7 @@
               <desc>The <gi>archdesc</gi> element COULD contain a <gi>controlaccess</gi>
                 element.</desc>
               <constraint>
-                <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="ead:archdesc"><assert
+                <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="ead:archdesc" see="&path;#EAD.archdesc"><assert
                     xmlns="http://purl.oclc.org/dsdl/schematron" role="COULD"
                     test="ead:controlaccess">archdesc COULD have a controlaccess</assert></rule>
               </constraint>
@@ -229,7 +233,7 @@
               <desc>A <gi>scopecontent</gi> element SHOULD be present in the description at least in
                   <gi>archdesc</gi>, if not in the <gi>c</gi> elements.</desc>
               <constraint>
-                <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="ead:archdesc"
+                <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="ead:archdesc" see="&path;#EAD.archdesc"
                   role="SHOULD">
                   <assert xmlns="http://purl.oclc.org/dsdl/schematron"
                     test="ead:scopecontent or ead:dsc/ead:c01/descendant-or-self::ead:scopecontent"
@@ -244,7 +248,7 @@
             <constraintSpec ident="levelRequired" scheme="isoschematron" type="EHRI">
               <desc><gi>c01</gi> MUST have a <att>level</att> attribute.</desc>
               <constraint>
-                <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="ead:c01">
+                <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="ead:c01" see="&path;#EAD.c01">
                   <assert xmlns="http://purl.oclc.org/dsdl/schematron" role="MUST" test="@level">c01
                     MUST have a level-attribute</assert></rule>
               </constraint>
@@ -254,7 +258,7 @@
             <constraintSpec ident="levelRequired" scheme="isoschematron" type="EHRI">
               <desc><gi>c02</gi> MUST have a <att>level</att> attribute.</desc>
               <constraint>
-                <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="ead:c02">
+                <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="ead:c02" see="&path;#EAD.c02">
                   <assert xmlns="http://purl.oclc.org/dsdl/schematron" role="MUST" test="@level">c02
                     MUST have a level-attribute</assert></rule>
               </constraint>
@@ -264,7 +268,7 @@
             <constraintSpec ident="levelRequired" scheme="isoschematron" type="EHRI">
               <desc><gi>c03</gi> MUST have a <att>level</att> attribute.</desc>
               <constraint>
-                <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="ead:c03">
+                <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="ead:c03" see="&path;#EAD.c03">
                   <assert xmlns="http://purl.oclc.org/dsdl/schematron" role="MUST" test="@level">c03
                     MUST have a level-attribute</assert></rule>
               </constraint>
@@ -274,7 +278,7 @@
             <constraintSpec ident="levelRequired" scheme="isoschematron" type="EHRI">
               <desc><gi>c04</gi> MUST have a <att>level</att> attribute.</desc>
               <constraint>
-                <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="ead:c04">
+                <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="ead:c04" see="&path;#EAD.c04">
                   <assert xmlns="http://purl.oclc.org/dsdl/schematron" role="MUST" test="@level">c04
                     MUST have a level-attribute</assert></rule>
               </constraint>
@@ -284,7 +288,7 @@
             <constraintSpec ident="levelRequired" scheme="isoschematron" type="EHRI">
               <desc><gi>c05</gi> MUST have a <att>level</att> attribute.</desc>
               <constraint>
-                <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="ead:c05">
+                <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="ead:c05" see="&path;#EAD.c05">
                   <assert xmlns="http://purl.oclc.org/dsdl/schematron" role="MUST" test="@level">c05
                     MUST have a level-attribute</assert></rule>
               </constraint>
@@ -294,7 +298,7 @@
             <constraintSpec ident="levelRequired" scheme="isoschematron" type="EHRI">
               <desc><gi>c06</gi> MUST have a <att>level</att> attribute.</desc>
               <constraint>
-                <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="ead:c06">
+                <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="ead:c06" see="&path;#EAD.c06">
                   <assert xmlns="http://purl.oclc.org/dsdl/schematron" role="MUST" test="@level">c06
                     MUST have a level-attribute</assert></rule>
               </constraint>
@@ -304,7 +308,7 @@
               <desc>The component elements SHOULD be numbered components between <gi>c01</gi> and
                   <gi>c06</gi></desc>
               <constraint>
-                <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="ead:c06">
+                <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="ead:c06" see="&path;#EAD.c06">
                   <assert xmlns="http://purl.oclc.org/dsdl/schematron" role="SHOULD" test="not(ead:c07)"
                     >c subelements SHOULD be between c01 and c06</assert>
                 </rule>
@@ -316,7 +320,7 @@
               <desc>The component elements SHOULD be numbered components between <gi>c01</gi> and
                   <gi>c06</gi></desc>
               <constraint>
-                <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="ead:c07">
+                <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="ead:c07" see="&path;#EAD.c07">
                   <assert xmlns="http://purl.oclc.org/dsdl/schematron" role="SHOULD" test="not(ead:c08)"
                     >c subelements SHOULD be between c01 and c06</assert>
                 </rule>
@@ -328,7 +332,7 @@
               <desc>The component elements SHOULD be numbered components between <gi>c01</gi> and
                   <gi>c06</gi></desc>
               <constraint>
-                <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="ead:c08">
+                <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="ead:c08" see="&path;#EAD.c08">
                   <assert xmlns="http://purl.oclc.org/dsdl/schematron" role="SHOULD" test="not(ead:c09)"
                     >c subelements SHOULD be between c01 and c06</assert>
                 </rule>
@@ -340,7 +344,7 @@
               <desc>The component elements SHOULD be numbered components between <gi>c01</gi> and
                   <gi>c06</gi></desc>
               <constraint>
-                <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="ead:c09">
+                <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="ead:c09" see="&path;#EAD.c09">
                   <assert xmlns="http://purl.oclc.org/dsdl/schematron" role="SHOULD" test="not(ead:c10)"
                     >c subelements SHOULD be between c01 and c06</assert>
                 </rule>
@@ -352,7 +356,7 @@
               <desc>The component elements SHOULD be numbered components between <gi>c01</gi> and
                   <gi>c06</gi></desc>
               <constraint>
-                <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="ead:c10">
+                <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="ead:c10" see="&path;#EAD.c10">
                   <assert xmlns="http://purl.oclc.org/dsdl/schematron" role="SHOULD" test="not(ead:c11)"
                     >c subelements SHOULD be between c01 and c06</assert>
                 </rule>
@@ -364,7 +368,7 @@
               <desc>The component elements SHOULD be numbered components between <gi>c01</gi> and
                   <gi>c06</gi></desc>
               <constraint>
-                <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="ead:c11">
+                <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="ead:c11" see="&path;#EAD.c11">
                   <assert xmlns="http://purl.oclc.org/dsdl/schematron" role="SHOULD" test="not(ead:c12)"
                     >c subelements SHOULD be between c01 and c06</assert>
                 </rule>
@@ -379,7 +383,7 @@
                     target="https://github.com/harvard-library/archivesspace-checker/blob/master/schematron/archivesspace_checker_sch.xml"
                     >see it here</ref>)</bibl>]</desc>
               <constraint>
-                <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="ead:change"
+                <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="ead:change" see="&path;#EAD.change"
                   role="SHOULD">
                   <assert xmlns="http://purl.oclc.org/dsdl/schematron"
                     test=".[ead:date and ead:item]"> 'revisiondesc/change' element SHOULD contain
@@ -391,7 +395,7 @@
               <desc>The <gi>date</gi> element for each <gi>change</gi> in <gi>revisiondesc</gi>
                 SHOULD not be empty</desc>
               <constraint>
-                <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="ead:change"><assert
+                <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="ead:change" see="&path;#EAD.change"><assert
                     xmlns="http://purl.oclc.org/dsdl/schematron" role="SHOULD"
                     test="every $x in ead:date satisfies normalize-space($x)">a revisiondesc/change SHOULD have a not empty
                     date</assert></rule>
@@ -403,7 +407,7 @@
               <desc>In <gi>controlaccess</gi>, EHRI welcomes any access points types :
                   <gi>subject</gi>, <gi>geogname</gi>, <gi>persname</gi>, <gi>orgname</gi>.</desc>
               <constraint>
-                <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="ead:controlaccess"
+                <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="ead:controlaccess" see="&path;#EAD.controlaccess"
                     ><assert xmlns="http://purl.oclc.org/dsdl/schematron" role="COULD"
                     test="ead:subject">controlaccess COULD have one or more subject
                     elements</assert></rule>
@@ -413,7 +417,7 @@
               <desc>In <gi>controlaccess</gi>, EHRI welcomes any access points types :
                   <gi>subject</gi>, <gi>geogname</gi>, <gi>persname</gi>, <gi>orgname</gi>.</desc>
               <constraint>
-                <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="ead:controlaccess"
+                <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="ead:controlaccess" see="&path;#EAD.controlaccess"
                     ><assert xmlns="http://purl.oclc.org/dsdl/schematron" role="COULD"
                     test="ead:geogname">controlaccess COULD have one or more geogname
                     elements</assert></rule>
@@ -423,7 +427,7 @@
               <desc>In <gi>controlaccess</gi>, EHRI welcomes any access points types :
                   <gi>subject</gi>, <gi>geogname</gi>, <gi>persname</gi>, <gi>orgname</gi>.</desc>
               <constraint>
-                <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="ead:controlaccess">
+                <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="ead:controlaccess" see="&path;#EAD.controlaccess">
                   <assert xmlns="http://purl.oclc.org/dsdl/schematron" role="COULD"
                     test="ead:persname">controlaccess COULD have one or more persname
                     elements</assert></rule>
@@ -433,7 +437,7 @@
               <desc>In <gi>controlaccess</gi>, EHRI welcomes any access points types :
                   <gi>subject</gi>, <gi>geogname</gi>, <gi>persname</gi>, <gi>orgname</gi>.</desc>
               <constraint>
-                <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="ead:controlaccess">
+                <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="ead:controlaccess" see="&path;#EAD.controlaccess">
                   <assert xmlns="http://purl.oclc.org/dsdl/schematron" role="COULD"
                     test="ead:orgname">controlaccess COULD have one or more orgname
                     elements</assert></rule>
@@ -446,7 +450,7 @@
                 vocabularies and authorities. Check the <ref target="http://ehri-project.eu">EHRI
                   website</ref> for more information</desc>
               <constraint>
-                <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="ead:controlaccess">
+                <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="ead:controlaccess" see="&path;#EAD.controlaccess">
                   <assert xmlns="http://purl.oclc.org/dsdl/schematron" role="COULD"
                     test=".[@authfilenumber and @source]">Access points COULD be chosen in an
                     authority list. This list should be declared in a @source attribute. The related
@@ -461,7 +465,7 @@
               <desc>All the <gi>date</gi> elements MUST have a <att>normal</att> attribute whose
                 pattern respects the ISO8601 standard and take the following form: YYYY-MM-DD</desc>
               <constraint>
-                <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="ead:date"><assert
+                <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="ead:date" see="&path;#EAD.date"><assert
                     xmlns="http://purl.oclc.org/dsdl/schematron" role="MUST"
                     test="matches(@normal, '^(([0-9]|[1-9][0-9]|[1-9][0-9]{2}|[1-9][0-9]{3}))-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01])$')"
                     >@normal attribute MUST respect ISO8601 pattern = YYYY-MM-DD</assert></rule>
@@ -472,7 +476,7 @@
             <constraintSpec ident="unitidRequired" scheme="isoschematron" type="EHRI" mode="add">
               <desc><gi>did</gi> elements MUST contain <gi>unitid</gi></desc>
               <constraint>
-                <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="ead:did"><assert
+                <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="ead:did" see="&path;#EAD.did"><assert
                     xmlns="http://purl.oclc.org/dsdl/schematron" role="MUST" test="ead:unitid">a did
                     MUST have a unitid, according 17.3 and WP19</assert></rule>
               </constraint>
@@ -480,7 +484,7 @@
             <constraintSpec ident="unittitleRequired" scheme="isoschematron" type="EHRI" mode="add">
               <desc><gi>did</gi> elements MUST contain <gi>unittittle</gi></desc>
               <constraint>
-                <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="ead:did">
+                <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="ead:did" see="&path;#EAD.did">
                   <assert xmlns="http://purl.oclc.org/dsdl/schematron" role="MUST"
                     test="ead:unittitle">a did MUST have a unittitle, according 17.3</assert></rule>
               </constraint>
@@ -488,7 +492,7 @@
             <constraintSpec ident="unittitleNotEmpty" scheme="isoschematron" type="EHRI" mode="add">
               <desc>a <gi>did</gi> MUST have at least one non-empty <gi>unittitle</gi></desc>
               <constraint>
-                <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="ead:did"><assert
+                <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="ead:did" see="&path;#EAD.did"><assert
                     xmlns="http://purl.oclc.org/dsdl/schematron" role="MUST"
                     test="count(ead:unittitle[text()]) > 0">a did MUST have at least one non-empty
                     unittitle</assert></rule>
@@ -499,7 +503,7 @@
             <constraintSpec ident="dscType" scheme="isoschematron" type="EHRI" mode="add">
               <desc><gi>dsc</gi> MUST have a <att>type</att> attribute</desc>
               <constraint>
-                <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="ead:dsc">
+                <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="ead:dsc" see="&path;#EAD.dsc">
                   <assert xmlns="http://purl.oclc.org/dsdl/schematron" role="MUST" test="@type">dsc
                     MUST have a type attribute</assert></rule>
               </constraint>
@@ -508,7 +512,7 @@
               <desc>if <gi>dsc</gi>'s <att>type</att> attribute has "othertype" for value,
                   <gi>dsc</gi> MUST have a not empty <att>othertype</att> attribute</desc>
               <constraint>
-                <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="ead:dsc">
+                <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="ead:dsc" see="&path;#EAD.dsc">
                   <assert xmlns="http://purl.oclc.org/dsdl/schematron" role="MUST"
                     test="not(@type ='othertype') or (@othertype and not(@othertype=''))">if dsc's
                     type attribute has "othertype" for value, dsc MUST have a not empty othertype
@@ -521,7 +525,7 @@
                 <gi>c06</gi></desc>
               <constraint>
                 <rule xmlns="http://purl.oclc.org/dsdl/schematron" role="SHOULD"
-                  context="ead:dsc | ead:c01 | ead:c02 | ead:c03 | ead:c04 | ead:c05 ">
+                  context="ead:dsc | ead:c01 | ead:c02 | ead:c03 | ead:c04 | ead:c05" see="&path;#EAD.dsc">
                   <assert xmlns="http://purl.oclc.org/dsdl/schematron" test="not(ead:c)">the dsc
                     components SHOULD numbered, from c01 to c06</assert>
                 </rule>
@@ -535,7 +539,7 @@
                 in English SHOULD be added. For instance, using another <gi>unittitle</gi> element
                 with a <att>type</att> attribute</desc>
               <constraint>
-                <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="ead:eadheader">
+                <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="ead:eadheader" see="&path;#EAD.eadheader">
                   <assert xmlns="http://purl.oclc.org/dsdl/schematron" role="SHOULD"
                     test="ead:profiledesc/ead:langusage/@langcode = 'eng'">If the language of the
                     description is not English, a parallel form of the title in English SHOULD be
@@ -548,7 +552,7 @@
               mode="add">
               <desc><gi>eadheader</gi> MUST contain a <gi>profiledesc</gi>element</desc>
               <constraint>
-                <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="ead:eadheader">
+                <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="ead:eadheader" see="&path;#EAD.eadheader">
                   <assert xmlns="http://purl.oclc.org/dsdl/schematron" role="MUST"
                     test="ead:profiledesc">eadheader MUST contain a profiledesc
                   element</assert></rule>
@@ -559,7 +563,7 @@
               <desc>A date of creation for the finding aid is welcome. The relevant element in
                   <gi>date</gi>, child of <gi>creation</gi></desc>
               <constraint>
-                <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="ead:eadheader"><assert
+                <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="ead:eadheader" see="&path;#EAD.eadheader"><assert
                     xmlns="http://purl.oclc.org/dsdl/schematron" role="COULD"
                     test="every $x in ead:creation/ead:date satisfies normalize-space($x)"
                     >eadheader COULD have a non-empty creation-date</assert></rule>
@@ -571,7 +575,7 @@
               <desc>the <gi>eadid</gi> element MUST contain text. Most of the time, it is
                 automatically generated by the archival tool.</desc>
               <constraint>
-                <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="ead:eadid"><assert
+                <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="ead:eadid" see="&path;#EAD.eadheader"><assert
                     xmlns="http://purl.oclc.org/dsdl/schematron" role="MUST"
                     test="normalize-space(.)">eadid MUST contain text</assert></rule>
               </constraint>
@@ -581,7 +585,7 @@
                 provides (if applicable) the ISO 15511 code for the institution that maintains the
                 finding aid.</desc>
               <constraint>
-                <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="ead:eadid">
+                <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="ead:eadid" see="&path;#EAD.eadid">
                   <assert xmlns="http://purl.oclc.org/dsdl/schematron" role="SHOULD"
                     test="@mainagencycode"> eadid SHOULD contain a mainagencycode attribute
                   </assert>
@@ -594,7 +598,7 @@
               mode="add">
               <desc><gi>langmaterial</gi> COULD contain a <gi>language</gi> element.</desc>
               <constraint>
-                <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="ead:langmaterial">
+                <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="ead:langmaterial" see="&path;#EAD.langmaterial">
                   <assert xmlns="http://purl.oclc.org/dsdl/schematron" role="COULD"
                     test="ead:language">langmaterial COULD have a language sub element</assert>
                 </rule>
@@ -606,7 +610,7 @@
               <desc><gi>language</gi> MUST have a <att>langcode</att> attribute. See also the rule
                 on <att>langcode</att> and ISO 639: <ptr target="#ISO639rule"/></desc>
               <constraint>
-                <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="ead:language"><assert
+                <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="ead:language" see="&path;#EAD.language"><assert
                     xmlns="http://purl.oclc.org/dsdl/schematron" role="MUST" test="@langcode"
                     >language MUST have a langcode attribute</assert></rule>
               </constraint>
@@ -615,7 +619,7 @@
               <desc><gi>language</gi> MUST have a <att>scriptcode</att> attribute. See also the rule
                 on <att>scriptcode</att> and ISO 15924: <ptr target="#ISO15924rule"/></desc>
               <constraint>
-                <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="ead:language"><assert
+                <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="ead:language" see="&path;#EAD.language"><assert
                     xmlns="http://purl.oclc.org/dsdl/schematron" role="SHOULD" test="@scriptcode"
                     >language SHOULD have a scriptcode attribute</assert></rule>
               </constraint>
@@ -627,7 +631,7 @@
                 copies are present in the EHRI portal and make a link between the two
                 descriptions.</desc>
               <constraint>
-                <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="ead:originalsloc">
+                <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="ead:originalsloc" see="&path;#EAD.originalsloc">
                   <assert xmlns="http://purl.oclc.org/dsdl/schematron" role="COULD"
                     test="not(normalize-space(.))">If the element originalsloc is not empty, you
                     COULD try to identify if copies are present in the EHRI portal and make a link
@@ -647,7 +651,7 @@
                 given name</desc>
               <constraint>
                 <rule xmlns="http://purl.oclc.org/dsdl/schematron"
-                  context="ead:controlaccess/ead:persname">
+                  context="ead:controlaccess/ead:persname" see="&path;#EAD.persname">
                   <assert xmlns="http://purl.oclc.org/dsdl/schematron" role="SHOULD"
                     test="matches(., '[0-9a-zA-Z]+(,[0-9a-zA-Z]+)')">In the access points, Person names SHOULD be
                     structured like this : Family name, given name</assert>
@@ -662,7 +666,7 @@
               <desc>In the <gi>did</gi> element, <gi>physdesc</gi> SHOULD come with a non-empty
                   <gi>extent</gi></desc>
               <constraint>
-                <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="ead:physdesc"><assert
+                <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="ead:physdesc" see="&path;#EAD.physdesc"><assert
                     xmlns="http://purl.oclc.org/dsdl/schematron" role="SHOULD"
                     test="every $x in ead:extent satisfies normalize-space($x)">a did SHOULD have a non-empty
                     physdesc-extent, according to 17.3</assert></rule>
@@ -675,7 +679,7 @@
                 document: <gi>langusage</gi>
                 <gi>language</gi> element</desc>
               <constraint>
-                <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="ead:profiledesc"><assert
+                <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="ead:profiledesc" see="&path;#EAD.profildesc"><assert
                     xmlns="http://purl.oclc.org/dsdl/schematron" role="MUST"
                     test="ead:langusage/ead:language">eadheader MUST contain a langusage/language
                     element</assert></rule>
@@ -684,7 +688,7 @@
             <constraintSpec ident="creationDesirable" scheme="isoschematron" type="EHRI" mode="add">
               <desc><gi>eadheader</gi> SHOULD contain a <gi>creation</gi> element</desc>
               <constraint>
-                <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="ead:profiledesc"><assert
+                <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="ead:profiledesc" see="&path;#EAD.profiledesc"><assert
                     xmlns="http://purl.oclc.org/dsdl/schematron" role="SHOULD" test="ead:creation"
                     >eadheader SHOULD contain a creation element</assert>
                 </rule>
@@ -694,7 +698,7 @@
               <desc><gi>descrules</gi> has a default value added automatically by EHRI. Therefore,
                 the content of <gi>descrules</gi> will be overwritten</desc>
               <constraint>
-                <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="ead:profiledesc"
+                <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="ead:profiledesc" see="&path;#EAD.profiledesc"
                   role="SHOULD">
                   <assert xmlns="http://purl.oclc.org/dsdl/schematron"
                     test="not(every $x in ead:descrules satisfies normalize-space($x))">descrules has a default value added
@@ -708,7 +712,7 @@
             <constraintSpec ident="notempty" scheme="isoschematron" type="EHRI" mode="add">
               <desc><gi>eadheader</gi> SHOULD specify a <gi>publisher</gi></desc>
               <constraint>
-                <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="ead:publicationstmt">
+                <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="ead:publicationstmt" see="&path;#EAD.publicationstmt">
                   <assert xmlns="http://purl.oclc.org/dsdl/schematron" role="SHOULD"
                     test="ead:publisher">eadheader SHOULD specify a publisher</assert>
                 </rule>
@@ -719,7 +723,7 @@
             <constraintSpec ident="authorRequired" scheme="isoschematron" type="EHRI" mode="add">
               <desc>The <gi>titlestmt</gi> element SHOULD contain a <gi>author</gi> element</desc>
               <constraint>
-                <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="ead:titlestmt">
+                <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="ead:titlestmt" see="&path;#EAD.titlestmt">
                   <assert xmlns="http://purl.oclc.org/dsdl/schematron" role="SHOULD"
                     test="ead:author"> The titlestmt element SHOULD contain a author element
                   </assert>
@@ -733,7 +737,7 @@
               <desc><gi>unitdates</gi> COULD have a <att>label</att> attribute or an
                   <att>encodinganalog</att> attribute, describing the type of date</desc>
               <constraint>
-                <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="ead:unitdate"><assert
+                <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="ead:unitdate" see="&path;#EAD.unitdate"><assert
                     xmlns="http://purl.oclc.org/dsdl/schematron" role="COULD"
                     test="normalize-space(@label) or normalize-space(@encodinganalog)">unitdates
                     COULD have a label attribute or an encodinganalog attribute, describing the type
@@ -769,7 +773,7 @@
             <constraintSpec ident="normalNotEmtpy" scheme="isoschematron" type="EHRI" mode="add">
               <desc><gi>unitdate</gi> SHOULD have a non-empty <att>normal</att> attribute</desc>
               <constraint>
-                <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="ead:unitdate"><assert
+                <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="ead:unitdate" see="&path;#EAD.unitdate"><assert
                     xmlns="http://purl.oclc.org/dsdl/schematron" role="SHOULD"
                     test="normalize-space(@normal)">unitdate should have a non-empty @normal
                     attribute</assert></rule>
@@ -781,7 +785,7 @@
               <desc>The <att>normal</att> attribute of <gi>unitdate</gi> must respect the ISO8601
                 pattern = YYYY-MM-DD</desc>
               <constraint>
-                <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="ead:unitdate">
+                <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="ead:unitdate" see="&path;#EAD.unitdate">
                   <!-- check date format -->
                   <assert xmlns="http://purl.oclc.org/dsdl/schematron" role="MUST"
                     test="matches(@normal, '^(\d{4}-?\d{2}-?\d{2}/?){1,2}$')">date format MUST be
@@ -820,7 +824,7 @@
               <desc>Each unit of description SHOULD have an indentifier in the element
                   <gi>unitid</gi>.</desc>
               <constraint>
-                <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="ead:unitid"><assert
+                <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="ead:unitid" see="&path;#EAD.unitid"><assert
                     xmlns="http://purl.oclc.org/dsdl/schematron" role="SHOULD"
                     test="normalize-space(.)">a unitid SHOULD not be empty</assert></rule>
               </constraint>
@@ -829,7 +833,7 @@
               <desc>In a given EAD document, all the <gi>unitid</gi> elements MUST be unique</desc>
               <constraint>
                 <!-- All the <unitid> have @label="ehri_main_identifer" ? -->
-                <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="ead:unitid"><assert
+                <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="ead:unitid" see="&path;#EAD.unitid"><assert
                     xmlns="http://purl.oclc.org/dsdl/schematron" role="MUST"
                     test="count(//ead:unitid[@label = 'ehri_main_identifier']) = count(distinct-values(//unitid[@label = 'ehri_main_identifier']))"
                     >unitid's MUST be unique within one ead file</assert></rule>
@@ -843,7 +847,7 @@
                 prefix, a dash, and an identifier.</desc>
               <constraint>
                 <rule xmlns="http://purl.oclc.org/dsdl/schematron"
-                  context="*[@repositorycode][preceding::ead:eadHeader/@repositoryencoding = 'iso15511']">
+                  context="*[@repositorycode][preceding::ead:eadHeader/@repositoryencoding = 'iso15511']" see="&path;#EAD.unitid">
                   <let xmlns="http://purl.oclc.org/dsdl/schematron" name="iso15511Pattern"
                     value="'(^([A-Z]{2})|([a-zA-Z]{1})|([a-zA-Z]{3,4}))(-[a-zA-Z0-9:/\-]{1,11})$'"/>
                   <assert xmlns="http://purl.oclc.org/dsdl/schematron"
@@ -873,7 +877,7 @@
                   <desc>If the attribute <att>level</att> has the value 'otherlevel', an attribute
                       <att>otherlevel</att> MUST be added</desc>
                   <constraint>
-                    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="ead:ead"><assert
+                    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="ead:ead" see="&path;#EAD.att.desc.c"><assert
                         xmlns="http://purl.oclc.org/dsdl/schematron" role="MUST"
                         test="not(@level = 'otherlevel') or (@otherlevel and not(@otherlevel = ''))"
                         >If the attribute level has the value 'otherlevel', an attribute otherlevel
@@ -884,7 +888,7 @@
                   <desc>The <gi>archdesc</gi> element can have for <att>level</att> the value
                     'fonds', not the subcomponents, <gi>c01</gi> to <gi>c06</gi></desc>
                   <constraint>
-                    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="ead:ead"><assert
+                    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="ead:att.desc.c"><assert
                         xmlns="http://purl.oclc.org/dsdl/schematron" role="SHOULD"
                         test="not(@level = 'fonds') or name(.) = 'archdesc'">The archdesc can have
                         for level the value 'fonds", not the subcomponents.</assert></rule>
@@ -899,7 +903,7 @@
                   <desc>A component with <att>level</att>="recordgrp" SHOULD be a child of another
                     component with <att>level</att>="recordgrp"</desc>
                   <constraint>
-                    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="ead:ead"><assert
+                    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="ead:att.desc.c"><assert
                         xmlns="http://purl.oclc.org/dsdl/schematron" role="SHOULD"
                         test="not(@level = 'recordgrp')
                         or (parent::*[@level = 'recordgrp'] or (name(.) = 'archdesc') or (name(.) = 'c01') and ancestor::*[@level = 'recordgrp'])"
@@ -910,7 +914,7 @@
                   <desc>A component with <att>level</att>="subgrp" SHOULD be a child of another
                     component with <att>level</att>="subgrp" or "recordgrp"</desc>
                   <constraint>
-                    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="ead:ead"><assert
+                    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="ead:att.desc.c"><assert
                         xmlns="http://purl.oclc.org/dsdl/schematron" role="SHOULD"
                         test="not(@level = 'subgrp')
                         or ((parent::*[@level = 'recordgrp' or @level = 'subgrp']) or (name(.) = 'c01') and ancestor::*[@level = 'recordgrp'])"
@@ -921,7 +925,7 @@
                   <desc>A component with <att>level</att>="subseries" SHOULD be a child of another
                     component with <att>level</att>="subseries" or "series"</desc>
                   <constraint>
-                    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="ead:ead"><assert
+                    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="ead:att.desc.c"><assert
                         xmlns="http://purl.oclc.org/dsdl/schematron" role="SHOULD"
                         test="not(@level = 'subseries') or parent::*[@level = 'subseries' or @level = 'series']"
                         >subseries SHOULD be a child of another subseries or a

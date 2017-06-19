@@ -1,12 +1,12 @@
 test,ident,role,description,context
-not(normalize-space(.)),copyLinking,COULD,"If the element altformavail is not empty, you COULD try to identify if the originals are present in the EHRI portal and make a link between the two descriptions.",ead:altformavail/ead:p
+not(normalize-space(.)),copyLinking,COULD,"If the element altformavail is not empty, you COULD try to identify if the originals are present in the EHRI portal and make a link between the two descriptions.",ead:altformavail
 ,EHRINamespace,,"This constraint exists only for technical reasons. Without the declaration of the EAD namespace, the transformation in relaxNG wouldn't work.",
 ,EHRINamespace-TEI,,"This constraint exists only for technical reasons. Without the declaration of the TEI namespace, the transformation in relaxNG wouldn't work.",
 @level,levelRequired,MUST,archdesc MUST have a level attribute.,ead:archdesc
 @level = 'fonds' or @level = 'recordGrp' or @level = 'collection' or @level='otherlevel',archdescLevelValues,COULD,The value of the archdesc level attribute SHOULD be limited to four values:fonds recorGrp collection otherlevel,ead:archdesc
-ead:did/ead:origination and normalize-space(ead:did/ead:origination),orignationDesirable,SHOULD,archdescshould contain a non-empty origination element.,ead:archdesc
-normalize-space(ead:processinfo),archdescProcessinfoDesirable,SHOULD,If archdesc should contain a non-empty processinfo element.,ead:archdesc
-normalize-space(ead:processinfo/ead:p/ead:date),archdescProcessinfoDateDesirable,SHOULD,The processinfo element SHOULD contain a date element as descendant.,ead:archdesc
+every $x in ead:did/ead:origination satisfies normalize-space($x),orignationDesirable,SHOULD,archdescshould contain a non-empty origination element.,ead:archdesc
+every $x in ead:processinfo satisfies normalize-space($x),archdescProcessinfoDesirable,SHOULD,If archdesc should contain a non-empty processinfo element.,ead:archdesc
+every $x in ead:processinfo/ead:p/ead:date satisfies normalize-space($x),archdescProcessinfoDateDesirable,SHOULD,The processinfo element SHOULD contain a date element as descendant.,ead:archdesc
 ead:did/ead:langmaterial,langmaterialPossible,COULD,The archdesc element COULD contain a langmaterial element.,ead:archdesc
 ead:custodhist,custodhistPossible,COULD,The archdesc element COULD contain a custodhist element.,ead:archdesc
 ead:otherfindaid,otherfindaidPossible,COULD,The archdesc element COULD contain a otherfindaid element.,ead:archdesc
@@ -23,14 +23,14 @@ ead:scopecontent or ead:dsc/ead:c01/descendant-or-self::ead:scopecontent,scopeco
 @level,levelRequired,MUST,c04 MUST have a level attribute.,ead:c04
 @level,levelRequired,MUST,c05 MUST have a level attribute.,ead:c05
 @level,levelRequired,MUST,c06 MUST have a level attribute.,ead:c06
-ead:c07,noc07c12,SHOULD,The component elements SHOULD be numbered components between c01 and c06,ead:c06
-ead:c08,noc07c12,SHOULD,The component elements SHOULD be numbered components between c01 and c06,ead:c07
-ead:c09,noc07c12,SHOULD,The component elements SHOULD be numbered components between c01 and c06,ead:c08
-ead:c10,noc07c12,SHOULD,The component elements SHOULD be numbered components between c01 and c06,ead:c09
-ead:c11,noc07c12,SHOULD,The component elements SHOULD be numbered components between c01 and c06,ead:c10
-ead:c12,noc07c12,SHOULD,The component elements SHOULD be numbered components between c01 and c06,ead:c11
+not(ead:c07),noc07c12,SHOULD,The component elements SHOULD be numbered components between c01 and c06,ead:c06
+not(ead:c08),noc07c12,SHOULD,The component elements SHOULD be numbered components between c01 and c06,ead:c07
+not(ead:c09),noc07c12,SHOULD,The component elements SHOULD be numbered components between c01 and c06,ead:c08
+not(ead:c10),noc07c12,SHOULD,The component elements SHOULD be numbered components between c01 and c06,ead:c09
+not(ead:c11),noc07c12,SHOULD,The component elements SHOULD be numbered components between c01 and c06,ead:c10
+not(ead:c12),noc07c12,SHOULD,The component elements SHOULD be numbered components between c01 and c06,ead:c11
 .[ead:date and ead:item],change-date-item,,"In revisiondesc, each change element SHOULD contain a date element and a item element. [This rule has been taken from Library of Harvard Archivesspace Checker (see it here)]",ead:change
-normalize-space(ead:date),dateNotEmpty,SHOULD,The date element for each change in revisiondesc SHOULD not be empty,ead:change
+every $x in ead:date satisfies normalize-space($x),dateNotEmpty,SHOULD,The date element for each change in revisiondesc SHOULD not be empty,ead:change
 ead:subject,controlaccessSubjectPossible,COULD,"In controlaccess, EHRI welcomes any access points types : subject, geogname, persname, orgname.",ead:controlaccess
 ead:geogname,controlaccessPlacePossible,COULD,"In controlaccess, EHRI welcomes any access points types : subject, geogname, persname, orgname.",ead:controlaccess
 ead:persname,controlaccessPersnamePossible,COULD,"In controlaccess, EHRI welcomes any access points types : subject, geogname, persname, orgname.",ead:controlaccess
@@ -45,19 +45,20 @@ not(@type ='othertype') or (@othertype and not(@othertype='')),dscothertype,MUST
 not(ead:c),unNumberedC,,"the dsc components SHOULD numbered, from c01 to c06",ead:dsc | ead:c01 | ead:c02 | ead:c03 | ead:c04 | ead:c05 
 ead:profiledesc/ead:langusage/@langcode = 'eng',parallelTitleEnglish,SHOULD,"If the language of the description is not English, a parallel form of the title in English SHOULD be added. For instance, using another unittitle element with a type attribute",ead:eadheader
 ead:profiledesc,profiledescRequired,MUST,eadheader MUST contain a profiledescelement,ead:eadheader
-ead:creation/ead:date and normalize-space(ead:creation/ead:date),creationDateNotempty,COULD,"A date of creation for the finding aid is welcome. The relevant element in date, child of creation",ead:eadheader
+every $x in ead:creation/ead:date satisfies normalize-space($x),creationDateNotempty,COULD,"A date of creation for the finding aid is welcome. The relevant element in date, child of creation",ead:eadheader
 normalize-space(.),mustContainText,MUST,"the eadid element MUST contain text. Most of the time, it is automatically generated by the archival tool.",ead:eadid
 @mainagencycode,creationDesirable,SHOULD,"eadid SHOULD contain a mainagencycode attribute, which provides (if applicable) the ISO 15511 code for the institution that maintains the finding aid.",ead:eadid
 ead:language,langmaterialLanguage,COULD,langmaterial COULD contain a language element.,ead:langmaterial
 @langcode,langcodeRequired,MUST,language MUST have a langcode attribute. See also the rule on langcode and ISO 639:,ead:language
 @scriptcode,scriptcodeRequired,SHOULD,language MUST have a scriptcode attribute. See also the rule on scriptcode and ISO 15924:,ead:language
-not(normalize-space(.)),originalsLinking,COULD,"If the element originalsloc is not empty, you COULD try to identify if copies are present in the EHRI portal and make a link between the two descriptions.",ead:originalsloc/ead:p
-"[0-9a-zA-Z]+(,[0-9a-zA-Z]+)*",familynameCommaGivenname,SHOULD-WP11,"In the access points, Person names SHOULD be structured like this : Family name, given name",ead:controlaccess/ead:persname
-normalize-space(ead:extent[1]),nonemptyPhysdescDesirable,SHOULD,"In the did element, physdesc SHOULD come with a non-empty extent",ead:physdesc
+not(normalize-space(.)),originalsLinking,COULD,"If the element originalsloc is not empty, you COULD try to identify if copies are present in the EHRI portal and make a link between the two descriptions.",ead:originalsloc
+"matches(., '[0-9a-zA-Z]+(,[0-9a-zA-Z]+)')",familynameCommaGivenname,SHOULD,"In the access points, Person names SHOULD be structured like this : Family name, given name",ead:controlaccess/ead:persname
+every $x in ead:extent satisfies normalize-space($x),nonemptyPhysdescDesirable,SHOULD,"In the did element, physdesc SHOULD come with a non-empty extent",ead:physdesc
 ead:langusage/ead:language,langusageRequired,MUST,eadheader MUST contain information on the language used in the EAD document: langusage language element,ead:profiledesc
 ead:creation,creationDesirable,SHOULD,eadheader SHOULD contain a creation element,ead:profiledesc
-not(normalize-space(ead:descrules)),descrules,,"descrules has a default value added automatically by EHRI. Therefore, the content of descrules will be overwritten",ead:profiledesc
+not(every $x in ead:descrules satisfies normalize-space($x)),descrules,,"descrules has a default value added automatically by EHRI. Therefore, the content of descrules will be overwritten",ead:profiledesc
 ead:publisher,notempty,SHOULD,eadheader SHOULD specify a publisher,ead:publicationstmt
+ead:author,authorRequired,SHOULD,The titlestmt element SHOULD contain a author element,ead:titlestmt
 normalize-space(@label) or normalize-space(@encodinganalog),labelDesirable,COULD,"unitdates COULD have a label attribute or an encodinganalog attribute, describing the type of date",ead:unitdate
 normalize-space(@normal),normalNotEmtpy,SHOULD,unitdate SHOULD have a non-empty normal attribute,ead:unitdate
 $end-date castable as xs:date,normalRegex,MUST,The normal attribute of unitdate must respect the ISO8601 pattern = YYYY-MM-DD,ead:unitdate
@@ -69,6 +70,3 @@ not(@level = 'fonds') or name(.) = 'archdesc',levelFonds,SHOULD,"The archdesc el
 not(@level = 'recordgrp') or (parent::*[@level = 'recordgrp'] or (name(.) = 'archdesc') or (name(.) = 'c01') and ancestor::*[@level = 'recordgrp']),recordgrplevel,SHOULD,"A component with level=""recordgrp"" SHOULD be a child of another component with level=""recordgrp""",ead:ead
 not(@level = 'subgrp') or ((parent::*[@level = 'recordgrp' or @level = 'subgrp']) or (name(.) = 'c01') and ancestor::*[@level = 'recordgrp']),subgrpLevel,SHOULD,"A component with level=""subgrp"" SHOULD be a child of another component with level=""subgrp"" or ""recordgrp""",ead:ead
 not(@level = 'subseries') or parent::*[@level = 'subseries' or @level = 'series'],subseriesLevel,SHOULD,"A component with level=""subseries"" SHOULD be a child of another component with level=""subseries"" or ""series""",ead:ead
-$langcodes//tei:f[@name='subType']/tei:symbol/@value = $code,regexLangcode,COULD,The langcode attribute SHOULD contain a code from the ISO 639 codelist. This list is maintained in TEI by the Parthenos project under the link,*[exists(@langcode)]
-$scriptcodes//tei:f[@name='code']/tei:symbol/@value = $code,ISOcode-Scriptcode,COULD,The scriptcode attribute SHOULD contain a code from the ISO 15924 codelist. This list is maintained in TEI by the Parthenos project under the link,*[exists(@scriptcode)]
-$countrycodes//tei:f[@name='a2code']/tei:symbol/@value = $code,ISO-countrycode,COULD,The countrycode attribute SHOULD contain a code from the ISO 3166-1 codelist. This list is maintained in TEI by the Parthenos project under the link,*[exists(@countrycode)]
