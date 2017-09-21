@@ -234,6 +234,9 @@
           <xsl:with-param name="attName">
             <xsl:value-of select="$name"/>
           </xsl:with-param>
+          <xsl:with-param name="classOrElementName">
+            <xsl:value-of select="tei:getClassOrElementName(.)"/>
+          </xsl:with-param>
         </xsl:call-template>
       </xsl:element>
       <xsl:element namespace="{$outputNS}" name="{$cellName}">
